@@ -12,6 +12,8 @@ library(data.table)
 library(ggplot2)
 library(assertthat)
 library(gee)
+library(lme4)
+library(lmetest)
 
 data_dir = here("..", "Individual Projects - Data", "Flu-Absenteeism/")
 
@@ -21,6 +23,8 @@ raw_data_path_downsample = paste0(data_dir, "absentee_all_downsample.csv")
 raw_data_path_RDS = paste0(data_dir, "absentee_all.RDS")
 raw_data_path_RDS_downsample = paste0(data_dir, "absentee_all_downsample.RDS")
 
-analysis_data_prefix = paste0(data_dir, "absentee_1617_peakmonths")
+peakmonths_data_prefix = paste0(data_dir, "absentee_1617_peakmonths")
+
+long_peak_weekly_rates_prefix = paste0(data_dir, "absentee_1617_peak_weekly_rates")
 
 source(here("Flu-Absenteeism", "PH242C - Final Project", "0 - Utils.R"))
