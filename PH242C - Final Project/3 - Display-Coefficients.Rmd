@@ -1,7 +1,4 @@
 ---
-title: "Display Coefficients"
-author: "Kunal Mishra"
-date: "12/4/2018"
 output: pdf_document
 ---
 
@@ -9,37 +6,47 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 # Load libraries and coefficient estimates
-# source(here::here("Flu-Absenteeism", "PH242C - Final Project", "0 - Config.R"))
+#source(here::here("Flu-Absenteeism", "PH242C - Final Project", "0 - Config.R"))
+source("0 - Config.R")
 
-# fit_dir = here("Flu-Absenteeism", "PH242C - Final Project/")
-# 
-# filenames = list(
-#   "2b-F1-GEE-unadj.RDS",
-#   "2b-F2-GEE-adj.RDS",
-#   "2b-F3-GEE-w5max-unadj.RDS",
-#   "2b-F4-GEE-w5max-adj.RDS",
-#   "2b-F5-GEE-unadj_AR.RDS",
-#   "2b-F6-GEE-adj_AR.RDS",
-#   "2b-F7-GEE-w5max-unadj_AR.RDS",
-#   "2b-F8-GEE-w5max-adj_AR.RDS"
-# )
-# 
-# filepaths = paste0(fit_dir, filenames)
-# 
-# estimates = list()
-# 
-# for (filepath in filepaths) {
-#   estimates[[filepath]] = read_rds(path = filepath) %>% as.tibble(rownames="id")
-# }
-# 
-# names(estimates) = filenames %>% unlist
-# 
-# # Convert estimates into a single dataframe
-# estimates_combined = bind_rows(estimates)
-# 
+fit_dir = paste0(getwd(), "/")
+
+filenames = list(
+  "2b-F1-GEE-unadj.RDS",
+  "2b-F2-GEE-adj.RDS",
+  "2b-F3-GEE-w5max-unadj.RDS",
+  "2b-F4-GEE-w5max-adj.RDS",
+  "2b-F5-GEE-unadj_AR.RDS",
+  "2b-F6-GEE-adj_AR.RDS",
+  "2b-F7-GEE-w5max-unadj_AR.RDS",
+  "2b-F8-GEE-w5max-adj_AR.RDS"
+)
+
+filepaths = paste0(fit_dir, filenames)
+
+estimates = list()
+
+for (filepath in filepaths) {
+  estimates[[filepath]] = read_rds(path = filepath) %>% as.tibble(rownames=" ")
+}
+
+names(estimates) = filenames %>% unlist
+
+# Convert estimates into a single dataframe
+estimates_combined = bind_rows(estimates)
+
 # Display in pretty latex
-#kable(estimates_combined, booktabs=T)
+kable(estimates_combined, "latex", caption = "Coefficient Estimates and SEs", booktabs=T) %>% 
+  kable_styling(latex_options = "striped")  %>% 
+  group_rows("GEE Unadj - 7 weeks - Exchangeable", 1, 4) %>% 
+  group_rows("GEE Adj - 7 weeks - Exchangeable", 5, 9) %>% 
+  group_rows("GEE Unadj - 5 weeks - Exchangeable", 10, 13) %>% 
+  group_rows("GEE Adj - 5 weeks - Exchangeable", 14, 18) %>% 
+  group_rows("GEE Unadj - 7 weeks - Autoregressive", 19, 22) %>% 
+  group_rows("GEE Adj - 7 weeks - Autoregressive", 23, 27) %>% 
+  group_rows("GEE Unadj - 5 weeks - Autoregressive", 28, 31) %>% 
+  group_rows("GEE Adj - 5 weeks - Autoregressive", 32, 36)
 ```
 
