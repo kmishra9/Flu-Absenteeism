@@ -1,0 +1,45 @@
+---
+title: "Display Coefficients"
+author: "Kunal Mishra"
+date: "12/4/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Load libraries and coefficient estimates
+# source(here::here("Flu-Absenteeism", "PH242C - Final Project", "0 - Config.R"))
+
+# fit_dir = here("Flu-Absenteeism", "PH242C - Final Project/")
+# 
+# filenames = list(
+#   "2b-F1-GEE-unadj.RDS",
+#   "2b-F2-GEE-adj.RDS",
+#   "2b-F3-GEE-w5max-unadj.RDS",
+#   "2b-F4-GEE-w5max-adj.RDS",
+#   "2b-F5-GEE-unadj_AR.RDS",
+#   "2b-F6-GEE-adj_AR.RDS",
+#   "2b-F7-GEE-w5max-unadj_AR.RDS",
+#   "2b-F8-GEE-w5max-adj_AR.RDS"
+# )
+# 
+# filepaths = paste0(fit_dir, filenames)
+# 
+# estimates = list()
+# 
+# for (filepath in filepaths) {
+#   estimates[[filepath]] = read_rds(path = filepath) %>% as.tibble(rownames="id")
+# }
+# 
+# names(estimates) = filenames %>% unlist
+# 
+# # Convert estimates into a single dataframe
+# estimates_combined = bind_rows(estimates)
+# 
+# Display in pretty latex
+#kable(estimates_combined, booktabs=T)
+```
+

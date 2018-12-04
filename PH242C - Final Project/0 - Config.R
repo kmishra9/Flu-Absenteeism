@@ -14,6 +14,7 @@ library(assertthat)
 library(gee)
 library(lme4)
 library(lmtest)
+library(kableExtra)
 
 data_dir = here("..", "Individual Projects - Data", "Flu-Absenteeism/")
 

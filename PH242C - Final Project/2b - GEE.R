@@ -61,7 +61,7 @@ gee_fit_adj_w5max = gee(
 #################################################################################
 # Conducting all analyses with an AR-M(1) correlation structure
 
-gee_fit_unadj = gee(
+gee_fit_unadj_AR = gee(
   formula = weekly_absence_rate ~ shifted_week + intervention + shifted_week * intervention,
   id = school_ID,
   data = absentee_1617_limited_weekly_rates,
@@ -70,7 +70,7 @@ gee_fit_unadj = gee(
   Mv = 1
 )
 
-gee_fit_adj = gee(
+gee_fit_adj_AR = gee(
   formula = weekly_absence_rate ~ shifted_week + intervention + per.freelunch + shifted_week * intervention,
   id = school_ID,
   data = absentee_1617_limited_weekly_rates,
@@ -79,7 +79,7 @@ gee_fit_adj = gee(
   Mv = 1
 )
 
-gee_fit_unadj_w5max_ = gee(
+gee_fit_unadj_w5max_AR = gee(
   formula = weekly_absence_rate ~ shifted_week + intervention + shifted_week * intervention,
   id = school_ID,
   data = absentee_1617_limited_weekly_rates_w5max,
@@ -88,7 +88,7 @@ gee_fit_unadj_w5max_ = gee(
   Mv = 1
 )
 
-gee_fit_adj_w5max = gee(
+gee_fit_adj_w5max_AR = gee(
   formula = weekly_absence_rate ~ shifted_week + intervention + per.freelunch + shifted_week * intervention,
   id = school_ID,
   data = absentee_1617_limited_weekly_rates_w5max,
@@ -107,3 +107,9 @@ write_rds(x = gee_fit_adj   %>% summary %>% coef, path = here("Flu-Absenteeism",
 
 write_rds(x = gee_fit_unadj_w5max %>% summary %>% coef, path = here("Flu-Absenteeism", "PH242C - Final Project", "2b-F3-GEE-w5max-unadj.RDS"))
 write_rds(x = gee_fit_adj_w5max   %>% summary %>% coef, path = here("Flu-Absenteeism", "PH242C - Final Project", "2b-F4-GEE-w5max-adj.RDS"))
+
+write_rds(x = gee_fit_unadj %>% summary %>% coef, path = here("Flu-Absenteeism", "PH242C - Final Project", "2b-F5-GEE-unadj_AR.RDS"))      # F1 stands for Fit 1
+write_rds(x = gee_fit_adj   %>% summary %>% coef, path = here("Flu-Absenteeism", "PH242C - Final Project", "2b-F6-GEE-adj_AR.RDS"))
+
+write_rds(x = gee_fit_unadj_w5max %>% summary %>% coef, path = here("Flu-Absenteeism", "PH242C - Final Project", "2b-F7-GEE-w5max-unadj_AR.RDS"))
+write_rds(x = gee_fit_adj_w5max   %>% summary %>% coef, path = here("Flu-Absenteeism", "PH242C - Final Project", "2b-F8-GEE-w5max-adj_AR.RDS"))
