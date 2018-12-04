@@ -13,7 +13,7 @@ library(ggplot2)
 library(assertthat)
 library(gee)
 library(lme4)
-library(lmetest)
+library(lmtest)
 
 data_dir = here("..", "Individual Projects - Data", "Flu-Absenteeism/")
 

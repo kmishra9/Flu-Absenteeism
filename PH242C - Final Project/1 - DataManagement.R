@@ -64,12 +64,12 @@ assert_that((
 
 absentee_1617_limited_weekly_rates = absentee_1617_peakmonths_limited %>%
   group_by(school_ID, week) %>%
-  summarize(weekly_absence_rate = sum(school_ID) / mean(enrolled)) %>%
+  summarize(weekly_absence_rate = sum(absent_all) / mean(enrolled)) %>%
   mutate(shifted_week = week_map[week %>% as.character()] %>% unlist)
 
 absentee_1617_limited_weekly_rates_downsample = absentee_1617_peakmonths_limited_downsample %>%
   group_by(school_ID, week) %>%
-  summarize(weekly_absence_rate = sum(school_ID) / mean(enrolled)) %>%
+  summarize(weekly_absence_rate = sum(absent_all) / mean(enrolled)) %>%
   mutate(shifted_week = week_map[week %>% as.character()] %>% unlist)
 
 #################################################################################
@@ -81,7 +81,8 @@ absentee_1617_limited_weekly_rates  = absentee_1617_limited_weekly_rates %>%
       distinct,
     by = c("school_ID", "week")
   ) %>% 
-  arrange(school_ID, shifted_week)
+  arrange(school_ID, shifted_week) %>%
+  select(-week, -yr, -month)
 
 absentee_1617_limited_weekly_rates_downsample  = absentee_1617_limited_weekly_rates_downsample %>%
   left_join(
@@ -90,7 +91,8 @@ absentee_1617_limited_weekly_rates_downsample  = absentee_1617_limited_weekly_ra
       distinct,
     by = c("school_ID", "week")
   ) %>% 
-  arrange(school_ID, shifted_week)
+  arrange(school_ID, shifted_week) %>%
+  select(-week, -yr, -month)
 
 #################################################################################
 # Export several versions of data
