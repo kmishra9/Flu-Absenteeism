@@ -13,98 +13,27 @@ source(here::here("Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of 
 absentee_all = fread(file = raw_data_path) %>% as.tibble()
 absentee_all_downsample = down_sample(data = absentee_all)
 
+vaccination_coverage = read_rds(path = vaccination_coverage_path)
+
 #################################################################################
 # Clean and limit data to what is relevant to analysis
 #################################################################################
 
-# Adjust our data to only include the peakmonths for all schools during the 2016-2017 flu season (as defined by the CDPH)
-peakmonths = list(11, 12, 1)
+absentee_flu = absentee_all %>% filter(fluseasCDPH == 1)
+absentee_flu_downsample = absentee_all_downsample %>% filter(fluseasCDPH == 1)
 
-absentee_1617_peakmonths = absentee_all %>%
-  filter(schoolyr == "2016-17", fluseasCDPH==1, (month %in% peakmonths))
-
-absentee_1617_peakmonths_downsample = absentee_all_downsample %>%
-  filter(schoolyr == "2016-17", fluseasCDPH==1, (month %in% peakmonths))
-
-#################################################################################
-# Only keep a limited set of relevant variables and add a unique ID for each cluster (district-school pairing)
-absentee_1617_peakmonths_limited = absentee_1617_peakmonths %>%
-  select("dist", "dist.n", "school","enrolled",            # School Information, including a treatment indicator and the # of students to standardize absence rates by
-         "yr", "month", "week", "date",                    # Longitudinal markers
-         "absent_all",                                     # Indicators of absence, the measured outcome
-         "per.freelunch") %>%                              # A limited set of covariates to adjust for (estimating median income)
-  rename("intervention"=dist.n) %>% 
-  mutate(school_ID = as.numeric(interaction(dist, school, drop=TRUE)))
-
-absentee_1617_peakmonths_limited_downsample = absentee_1617_peakmonths_downsample %>%
-  select("dist", "dist.n", "school","enrolled",            # School Information, including a treatment indicator and the # of students to standardize absence rates by
-         "yr", "month", "week", "date",                    # Longitudinal markers
-         "absent_all",                                     # Indicators of absence, the measured outcome
-         "per.freelunch") %>%                              # A limited set of covariates to adjust for (estimating median income)
-  rename("intervention"=dist.n) %>% 
-  mutate(school_ID = as.numeric(interaction(dist, school, drop=TRUE)))
-
-#################################################################################
-# Organize into long, weekly absence rate data, standardized by enrollment and recalibrate week column
-week_map = list(
-  "49" = 1,
-  "50" = 2,
-  "51" = 3,
-  "2" = 4,
-  "3" = 5,
-  "4" = 6,
-  "5" = 7
-)
-assert_that((
-  week_map %>% names %>% sort ==
-    absentee_1617_peakmonths_limited %>% pull(week) %>% unique %>% as.character %>% sort
-) %>%
-  all
-)
-
-absentee_1617_limited_weekly_rates = absentee_1617_peakmonths_limited %>%
-  group_by(school_ID, week) %>%
-  summarize(weekly_absence_rate = sum(absent_all) / mean(enrolled)) %>%
-  mutate(shifted_week = week_map[week %>% as.character()] %>% unlist)
-
-absentee_1617_limited_weekly_rates_downsample = absentee_1617_peakmonths_limited_downsample %>%
-  group_by(school_ID, week) %>%
-  summarize(weekly_absence_rate = sum(absent_all) / mean(enrolled)) %>%
-  mutate(shifted_week = week_map[week %>% as.character()] %>% unlist)
-
-#################################################################################
-# Merge back original dataset variables and covariates, reduced to the weekly level
-absentee_1617_limited_weekly_rates  = absentee_1617_limited_weekly_rates %>%
-  left_join(
-    y = absentee_1617_peakmonths_limited %>%
-      select(-absent_all, -date) %>%
-      distinct,
-    by = c("school_ID", "week")
-  ) %>% 
-  arrange(school_ID, shifted_week) %>%
-  select(-week, -yr, -month)
-
-absentee_1617_limited_weekly_rates_downsample  = absentee_1617_limited_weekly_rates_downsample %>%
-  left_join(
-    y = absentee_1617_peakmonths_limited %>%
-      select(-absent_all, -date) %>%
-      distinct,
-    by = c("school_ID", "week")
-  ) %>% 
-  arrange(school_ID, shifted_week) %>%
-  select(-week, -yr, -month)
+absentee_peakwk = absentee_all %>% filter(peakwk == 1)
+absentee_peakwk_downsample = absentee_all_downsample %>% filter(peakwk == 1)
 
 #################################################################################
 # Export several versions of data
 #################################################################################
 
-write_rds(x = absentee_all, path = raw_data_path_RDS)
-
 write_csv(x = absentee_all_downsample, path = raw_data_path_downsample)
-write_csv(x = absentee_1617_peakmonths, path = paste0(peakmonths_data_prefix, ".csv"))
-write_csv(x = absentee_1617_peakmonths_downsample, path = paste0(peakmonths_data_prefix, "_downsample", ".csv"))
-write_csv(x = absentee_1617_peakmonths_limited, path = paste0(peakmonths_data_prefix, "_limited.csv"))
-write_csv(x = absentee_1617_peakmonths_limited_downsample, path = paste0(peakmonths_data_prefix, "_limited_downsample", ".csv"))
 
-write_csv(x = absentee_1617_limited_weekly_rates, path = paste0(long_peak_weekly_rates_prefix, ".csv"))
-write_csv(x = absentee_1617_limited_weekly_rates, path = paste0(long_peak_weekly_rates_prefix, "_downsample.csv"))
+write_csv(x = absentee_flu, path = flu_path)
+write_csv(x = absentee_flu_downsample, path = flu_path_downsample)
+
+write_csv(x = absentee_peakwk, path = peakwk_path)
+write_csv(x = absentee_peakwk_downsample, path = peakwk_path_downsample)
+

@@ -24,7 +24,6 @@
 # Output: ...
 
 down_sample = function(data, sample_pct=.01, seed=1) {
-  
   assert_that(is.data.frame(data))
   assert_that(is.double(sample_pct) & 0 < sample_pct & sample_pct < 1)
   assert_that(is.double(seed))
@@ -46,7 +45,6 @@ down_sample = function(data, sample_pct=.01, seed=1) {
 # Output: Prints the compression rate (compression size vs uncompressed size) acheived
 
 compress_dataframe = function(data, vars = colnames(data)) {
-  
   compressed_data = data %>%
     group_by_at(vars) %>%               # Group by all columns.
     mutate(weight = n()) %>%            # Create a new weight columns.
@@ -55,9 +53,7 @@ compress_dataframe = function(data, vars = colnames(data)) {
   print(cat("Compression of",
             deparse(substitute(data)),
             round((1 - nrow(compressed_data) / nrow(data)) * 100, 1), 
-            "%\n"
-  )
-  )
+            "%\n"))
   
   return(compressed_data)
 }
@@ -89,4 +85,21 @@ convert_nested_listoflists_to_DF = function(nested_list) {
   return_DF = rbind(rr.df, rd.df)
   
   return(return_DF)
+}
+
+# Documentation: load_to_list
+# Usage: load_to_list(data, sample_pct, seed)
+# Description: Loads the contents of an RData to an environment and returns the environment as a list
+# Args/Options: RData_path (a path to the RData_file, either relative to the working directory
+# or as an absolute path)
+# Returns: a named list corresponding to the named objects from the loaded RData file 
+# Output: ...
+
+load_to_list <- function(RData_path) {
+  if (!file.exists(RData_path)) {
+    stop(paste("Error, file does not exist:", RData_path))
+  }
+  env = new.env()
+  load(RData_path, env)
+  return(env %>% as.list()) 
 }

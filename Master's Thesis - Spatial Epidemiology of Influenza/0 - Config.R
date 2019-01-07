@@ -21,11 +21,12 @@ data_dir = here("..", "Individual Projects - Data", "Flu-Absenteeism/")
 raw_data_path = paste0(data_dir, "absentee_all.csv")
 raw_data_path_downsample = paste0(data_dir, "absentee_all_downsample.csv")
 
-raw_data_path_RDS = paste0(data_dir, "absentee_all.RDS")
-raw_data_path_RDS_downsample = paste0(data_dir, "absentee_all_downsample.RDS")
+flu_path = paste0(data_dir, "absentee_flu.csv")
+flu_path_downsample = paste0(data_dir, "absentee_flu_downsample.csv")
 
-peakmonths_data_prefix = paste0(data_dir, "absentee_1617_peakmonths")
+peakwk_path = paste0(data_dir, "absentee_peakwk.csv")
+peakwk_path_downsample = paste0(data_dir, "absentee_peakwk_downsample.csv")
 
-long_peak_weekly_rates_prefix = paste0(data_dir, "absentee_1617_peak_weekly_rates")
+vaccination_coverage_path = paste0(data_dir, "vaccination_coverage.RDS")
 
 source(here("Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of Influenza", "0 - Utils.R"))
