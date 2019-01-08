@@ -1,7 +1,7 @@
-###################################
+################################################################################
 # Colford-Hubbard Group
 # Utility functions
-###################################
+################################################################################
 
 # [TEMPLATE FOR NEW FUNCTIONS]
 # Documentation: 
@@ -13,8 +13,9 @@
 # Output: ...
 # [TEMPLATE FOR NEW FUNCTIONS]
 
-##############################################
-##############################################
+################################################################################
+################################################################################
+
 
 # Documentation: down_sample
 # Usage: down_sample(data, sample_pct, seed)
@@ -32,8 +33,8 @@ down_sample = function(data, sample_pct=.01, seed=1) {
   return(data[sample(nrow(data), floor(nrow(data) * sample_pct)),])
 }
 
-##############################################
-##############################################
+################################################################################
+################################################################################
 
 # Documentation: compress_dataframe
 # Usage: compress_dataframe(data, vars)
@@ -58,8 +59,8 @@ compress_dataframe = function(data, vars = colnames(data)) {
   return(compressed_data)
 }
 
-##############################################
-##############################################
+################################################################################
+################################################################################
 # Documentation: convert_nested_listoflists_to_DF
 # Usage: convert_nested_listoflists_to_DF(nested_list)
 # Description: Converts a list of lists into a single dataframe
@@ -87,6 +88,8 @@ convert_nested_listoflists_to_DF = function(nested_list) {
   return(return_DF)
 }
 
+################################################################################
+################################################################################
 # Documentation: load_to_list
 # Usage: load_to_list(data, sample_pct, seed)
 # Description: Loads the contents of an RData to an environment and returns the environment as a list
