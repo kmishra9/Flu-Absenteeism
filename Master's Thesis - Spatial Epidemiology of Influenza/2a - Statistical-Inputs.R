@@ -121,6 +121,6 @@ input_5 = vaccination_coverage_raw[grep("vx", vaccination_coverage_raw %>% names
 
 write_csv(x = input_1, path = paste0(project_dir, "2a-I1-FluAbsenceRate.csv"))
 write_csv(x = input_2, path = paste0(project_dir, "2a-I2-PeakwkAbsenceRate.csv"))
-write_csv(x = input_3, path = paste0(project_dir, "2a-I3-FluAbsenceRate_DID.csv"))
-write_csv(x = input_4, path = paste0(project_dir, "2a-I4-PeakwkAbsenceRate_DID.csv"))
+write_csv(x = input_3_did, path = paste0(project_dir, "2a-I3-FluAbsenceRate_DID.csv"))
+write_csv(x = input_4_did, path = paste0(project_dir, "2a-I4-PeakwkAbsenceRate_DID.csv"))
 write_csv(x = input_5, path = paste0(project_dir, "2a-I5-VaccinationCoverage.csv"))
