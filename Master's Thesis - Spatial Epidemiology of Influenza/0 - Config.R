@@ -7,18 +7,22 @@
 
 # Load libraries
 library(tidyverse)
-library(here)
 library(data.table)
+library(broom)
+
 library(ggplot2)
+library(ggmap)
+library(sp)
+library(rgdal)
+
+library(here)
 library(assertthat)
-library(gee)
-library(lme4)
-library(lmtest)
 library(kableExtra)
+
 
 # File paths
 data_dir = here("..", "Individual Projects - Data", "Flu-Absenteeism/")
-project_dir = here( "Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of Influenza/")
+project_dir = here("Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of Influenza/")
 
 raw_data_path = paste0(data_dir, "absentee_all.csv")
 raw_data_path_downsample = paste0(data_dir, "absentee_all_downsample.csv")
@@ -30,6 +34,9 @@ peakwk_path = paste0(data_dir, "absentee_peakwk.csv")
 peakwk_path_downsample = paste0(data_dir, "absentee_peakwk_downsample.csv")
 
 vaccination_coverage_path = paste0(data_dir, "vaccination_coverage.RDS")
+
+school_shapes_dir = paste0(data_dir, "SABS_1516/")
+school_shapes_layer = "SABS_1516"
 
 # Global variables
 pre_program_schoolyrs = list("2011-12","2012-13", "2013-14")
