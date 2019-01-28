@@ -35,6 +35,8 @@ peakwk_path_downsample = paste0(data_dir, "absentee_peakwk_downsample.csv")
 
 vaccination_coverage_path = paste0(data_dir, "vaccination_coverage.RDS")
 
+school_names_path = paste0(data_dir, "school_names.RDS")
+
 school_shapes_dir = paste0(data_dir, "SABS_1516/")
 school_shapes_layer = "SABS_1516"
 
