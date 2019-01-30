@@ -116,11 +116,9 @@ input_5 = vaccination_coverage_raw[grep("vx", vaccination_coverage_raw %>% names
 ################################################################################
 # Export several versions of aggregated input data
 ################################################################################
-# And then you'll save each input as a publishable dataset...
-# i.e. 2a-I1-FluAbsenceRate, 2a-I2-PeakwkAbsenceRate
 
-write_csv(x = input_1, path = paste0(project_dir, "2a-I1-FluAbsenceRate.csv"))
-write_csv(x = input_2, path = paste0(project_dir, "2a-I2-PeakwkAbsenceRate.csv"))
-write_csv(x = input_3_did, path = paste0(project_dir, "2a-I3-FluAbsenceRate_DID.csv"))
-write_csv(x = input_4_did, path = paste0(project_dir, "2a-I4-PeakwkAbsenceRate_DID.csv"))
-write_csv(x = input_5, path = paste0(project_dir, "2a-I5-VaccinationCoverage.csv"))
+write_csv(x = input_1, path = input_1_path)
+write_csv(x = input_2, path = input_2_path)
+write_csv(x = input_3_did, path = input_3_path)
+write_csv(x = input_4_did, path = input_4_path)
+write_csv(x = input_5, path = input_5_path)

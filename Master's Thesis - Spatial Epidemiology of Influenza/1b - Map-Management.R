@@ -124,17 +124,25 @@ for (absentee_school_name in names(WCCSD_not_found_aliases)) {
   }
 }
 
-################################################################################
-# Create the base ggmap layer 
-################################################################################
+# Sanity Check Polygon Plot
+# register_google(key = "")
+qmplot(
+  x = long,
+  y = lat,
+  group = group,
+  data = rbind(
+    OUSD_study_school_shapes_longlat,
+    WCCSD_study_school_shapes_longlat
+  ),
+  maptype = "toner-lite",
+  geom = "polygon"
+)
 
-
-
-
+ggsave(filename = paste0(project_dir, "1b-Study-Districts-Polygon-Plot.png"))
 
 ################################################################################
 # Export several pieces of relevant mapping data
 ################################################################################
 
-write_csv(x = OUSD_study_school_shapes_longlat, path = paste0(project_dir, "1b-OUSD-study-school-shapes-longlat.csv"))
-write_csv(x = WCCSD_study_school_shapes_longlat, path = paste0(project_dir, "1b-WCCSD-study-school-shapes-longlat.csv"))
+write_csv(x = OUSD_study_school_shapes_longlat, path = OUSD_study_school_shapes_longlat_path)
+write_csv(x = WCCSD_study_school_shapes_longlat, path = WCCSD_study_school_shapes_longlat_path)
