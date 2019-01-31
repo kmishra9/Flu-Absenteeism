@@ -54,7 +54,7 @@ ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate.png"))
 qmplot(
   x = long,
   y = lat,
-  fill = absence_rate_all,
+  fill = did_absence_rate_all,
   group = group,
   facets = . ~ schoolyr,
   data = input_3_longlat,
@@ -68,7 +68,7 @@ ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate_DID.png"))
 qmplot(
   x = long,
   y = lat,
-  fill = absence_rate_all,
+  fill = did_absence_rate_all,
   group = group,
   facets = . ~ schoolyr,
   data = input_4_longlat,
