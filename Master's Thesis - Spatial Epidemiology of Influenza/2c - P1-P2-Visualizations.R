@@ -12,22 +12,85 @@ source(here::here("Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of 
 # Import spatial inputs 
 ################################################################################
 
+input_1_longlat = read_csv(path = spatial_input_1_path)
+input_2_longlat = read_csv(path = spatial_input_2_path)
+input_3_longlat = read_csv(path = spatial_input_3_path)
+input_4_longlat = read_csv(path = spatial_input_4_path)
+input_5_longlat = read_csv(path = spatial_input_5_path)
 
 ################################################################################
-# Static Maps per Spatial Input & School Year
+# Static Maps per Spatial Input, Faceted by School Year
 ################################################################################
 
-inputs = list(input_1_longlat, input_2_longlat, input_3_longlat, input_4_longlat)
-
+# Input 1
 qmplot(
   x = long,
   y = lat,
-  fill = absence_rate_ill,
+  fill = absence_rate_all,
   group = group,
-  data = input_1_longlat %>% filter(schoolyr == "2016-17"),
+  facets = . ~ schoolyr,
+  data = input_1_longlat,
   maptype = "toner-lite",
   geom = "polygon"
 )
+
+ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate.png"))
+
+# Input 2
+qmplot(
+  x = long,
+  y = lat,
+  fill = absence_rate_all,
+  group = group,
+  facets = . ~ schoolyr,
+  data = input_2_longlat,
+  maptype = "toner-lite",
+  geom = "polygon"
+)
+
+ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate.png"))
+
+# Input 3
+qmplot(
+  x = long,
+  y = lat,
+  fill = absence_rate_all,
+  group = group,
+  facets = . ~ schoolyr,
+  data = input_3_longlat,
+  maptype = "toner-lite",
+  geom = "polygon"
+)
+
+ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate_DID.png"))
+
+# Input 4
+qmplot(
+  x = long,
+  y = lat,
+  fill = absence_rate_all,
+  group = group,
+  facets = . ~ schoolyr,
+  data = input_4_longlat,
+  maptype = "toner-lite",
+  geom = "polygon"
+)
+
+ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate_DID.png"))
+
+# Input 5
+qmplot(
+  x = long,
+  y = lat,
+  fill = vaccination_coverage,
+  group = group,
+  facets = . ~ schoolyr,
+  data = input_5_longlat,
+  maptype = "toner-lite",
+  geom = "polygon"
+)
+
+ggsave(filename=paste0(project_dir, "2c-P2-VaccinationCoverage.png"))
 
 
 ################################################################################
