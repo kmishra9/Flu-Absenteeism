@@ -32,7 +32,7 @@ qmplot(
   data = input_1_longlat,
   maptype = "toner-lite",
   geom = "polygon"
-)
+) + scale_fill_distiller(palette='Spectral')
 
 ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-all.png"))
 
@@ -45,7 +45,7 @@ qmplot(
   data = input_1_longlat,
   maptype = "toner-lite",
   geom = "polygon"
-)
+) + scale_fill_distiller(palette='Spectral')
 
 ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-ill.png"))
 
@@ -59,7 +59,7 @@ qmplot(
   data = input_2_longlat,
   maptype = "toner-lite",
   geom = "polygon"
-)
+) + scale_fill_distiller(palette='Spectral')
 
 ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-all.png"))
 
@@ -72,7 +72,7 @@ qmplot(
   data = input_2_longlat,
   maptype = "toner-lite",
   geom = "polygon"
-)
+) + scale_fill_distiller(palette='Spectral')
 
 ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-ill.png"))
 
@@ -86,7 +86,7 @@ qmplot(
   data = input_3_longlat,
   maptype = "toner-lite",
   geom = "polygon"
-)
+) + scale_fill_distiller(palette='Spectral')
 
 ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-DID-all.png"))
 
@@ -99,7 +99,7 @@ qmplot(
   data = input_3_longlat,
   maptype = "toner-lite",
   geom = "polygon"
-)
+) + scale_fill_distiller(palette='Spectral')
 
 ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-DID-ill.png"))
 
@@ -113,7 +113,7 @@ qmplot(
   data = input_4_longlat,
   maptype = "toner-lite",
   geom = "polygon"
-)
+) + scale_fill_distiller(palette='Spectral')
 
 ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-DID-all.png"))
 
@@ -126,7 +126,7 @@ qmplot(
   data = input_4_longlat,
   maptype = "toner-lite",
   geom = "polygon"
-)
+) + scale_fill_distiller(palette='Spectral')
 
 ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-DID-ill.png"))
 
