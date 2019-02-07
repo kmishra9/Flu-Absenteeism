@@ -12,11 +12,11 @@ source(here::here("Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of 
 # Import spatial inputs 
 ################################################################################
 
-input_1_longlat = read_csv(path = spatial_input_1_path)
-input_2_longlat = read_csv(path = spatial_input_2_path)
-input_3_longlat = read_csv(path = spatial_input_3_path)
-input_4_longlat = read_csv(path = spatial_input_4_path)
-input_5_longlat = read_csv(path = spatial_input_5_path)
+input_1_longlat = read_csv(file = spatial_input_1_path)
+input_2_longlat = read_csv(file = spatial_input_2_path)
+input_3_longlat = read_csv(file = spatial_input_3_path)
+input_4_longlat = read_csv(file = spatial_input_4_path)
+input_5_longlat = read_csv(file = spatial_input_5_path)
 
 ################################################################################
 # Static Maps per Spatial Input, Faceted by School Year

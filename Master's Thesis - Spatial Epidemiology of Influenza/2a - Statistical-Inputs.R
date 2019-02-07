@@ -12,12 +12,12 @@ source(here::here("Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of 
 # Import data
 ################################################################################
 
-absentee_flu = fread(file = flu_path_downsample) %>% as.tibble()
-absentee_peakwk = fread(file = peakwk_path_downsample) %>% as.tibble()
+absentee_flu             = fread(file = flu_path_downsample) %>% as.tibble()
+absentee_peakwk          = fread(file = peakwk_path_downsample) %>% as.tibble()
 
-absentee_flu_limited = absentee_flu %>% 
+absentee_flu_limited     = absentee_flu %>% 
   select(school, schoolyr, grade, race, enrolled, dist.n, absent_all, absent_ill)
-absentee_peakwk_limited = absentee_peakwk %>% 
+absentee_peakwk_limited  = absentee_peakwk %>% 
   select(school, schoolyr, grade, race, enrolled, dist.n, absent_all, absent_ill)
 
 vaccination_coverage_raw = read_rds(path = vaccination_coverage_path)
