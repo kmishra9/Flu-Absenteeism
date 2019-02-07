@@ -34,7 +34,20 @@ qmplot(
   geom = "polygon"
 )
 
-ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate.png"))
+ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-all.png"))
+
+qmplot(
+  x = long,
+  y = lat,
+  fill = absence_rate_ill,
+  group = group,
+  facets = . ~ schoolyr,
+  data = input_1_longlat,
+  maptype = "toner-lite",
+  geom = "polygon"
+)
+
+ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-ill.png"))
 
 # Input 2
 qmplot(
@@ -48,7 +61,20 @@ qmplot(
   geom = "polygon"
 )
 
-ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate.png"))
+ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-all.png"))
+
+qmplot(
+  x = long,
+  y = lat,
+  fill = absence_rate_ill,
+  group = group,
+  facets = . ~ schoolyr,
+  data = input_2_longlat,
+  maptype = "toner-lite",
+  geom = "polygon"
+)
+
+ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-ill.png"))
 
 # Input 3
 qmplot(
@@ -62,7 +88,20 @@ qmplot(
   geom = "polygon"
 )
 
-ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate_DID.png"))
+ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-DID-all.png"))
+
+qmplot(
+  x = long,
+  y = lat,
+  fill = did_absence_rate_ill,
+  group = group,
+  facets = . ~ schoolyr,
+  data = input_3_longlat,
+  maptype = "toner-lite",
+  geom = "polygon"
+)
+
+ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-DID-ill.png"))
 
 # Input 4
 qmplot(
@@ -76,7 +115,20 @@ qmplot(
   geom = "polygon"
 )
 
-ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate_DID.png"))
+ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-DID-all.png"))
+
+qmplot(
+  x = long,
+  y = lat,
+  fill = did_absence_rate_ill,
+  group = group,
+  facets = . ~ schoolyr,
+  data = input_4_longlat,
+  maptype = "toner-lite",
+  geom = "polygon"
+)
+
+ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-DID-ill.png"))
 
 # Input 5
 qmplot(
@@ -97,6 +149,4 @@ ggsave(filename=paste0(project_dir, "2c-P2-VaccinationCoverage.png"))
 # Exploratory Leaflet App
 ################################################################################
 
-# Options - District, 
-# 
 
