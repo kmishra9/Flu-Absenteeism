@@ -89,3 +89,4 @@ ggsave(filename=here("Flu-Absenteeism", "PH242C - Final Project", "2a-P6-HistFac
 # Control distribution has mean=0.2522119, SD=0.1110833
 
 
+# Need to present a side-by-side with "weight" of a school-district
