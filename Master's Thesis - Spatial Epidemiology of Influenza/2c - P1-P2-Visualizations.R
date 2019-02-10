@@ -22,6 +22,12 @@ input_5_longlat = read_csv(file = spatial_input_5_path)
 # Static Maps per Spatial Input, Faceted by School Year
 ################################################################################
 
+theme_update(
+  plot.title = element_text(hjust = 0.5),
+  legend.key.width = unit(3, "cm"),
+  plot.margin = unit(c(5, 0, 0, 1), "points")
+)
+
 # Input 1
 qmplot(
   x = long,
@@ -31,8 +37,11 @@ qmplot(
   facets = . ~ schoolyr,
   data = input_1_longlat,
   maptype = "toner-lite",
-  geom = "polygon"
-) + scale_fill_distiller(palette='Spectral')
+  geom = "polygon",
+  legend = "bottom"
+) + 
+  scale_fill_distiller(palette='Spectral') +
+  labs(title = "Mean All-Cause Absence Rate by School during Flu Season", fill="")
 
 ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-all.png"))
 
@@ -44,8 +53,12 @@ qmplot(
   facets = . ~ schoolyr,
   data = input_1_longlat,
   maptype = "toner-lite",
-  geom = "polygon"
-) + scale_fill_distiller(palette='Spectral')
+  geom = "polygon",
+  legend = "bottom"
+) + 
+  scale_fill_distiller(palette='Spectral') +
+  labs(title = "Mean Illness-Specific Absence Rate by School during Flu Season", fill="")
+  
 
 ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-ill.png"))
 
@@ -58,8 +71,11 @@ qmplot(
   facets = . ~ schoolyr,
   data = input_2_longlat,
   maptype = "toner-lite",
-  geom = "polygon"
-) + scale_fill_distiller(palette='Spectral')
+  geom = "polygon",
+  legend = "bottom"
+) + 
+  scale_fill_distiller(palette='Spectral') +
+  labs(title = "Mean All-Cause Absence Rate by School during the Peak Week of Flu Season", fill="")
 
 ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-all.png"))
 
@@ -71,8 +87,11 @@ qmplot(
   facets = . ~ schoolyr,
   data = input_2_longlat,
   maptype = "toner-lite",
-  geom = "polygon"
-) + scale_fill_distiller(palette='Spectral')
+  geom = "polygon",
+  legend = "bottom"
+) + 
+  scale_fill_distiller(palette='Spectral') +
+  labs(title = "Mean Illness-Specific Absence Rate by School during the Peak Week of Flu Season", fill="")
 
 ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-ill.png"))
 
@@ -85,8 +104,11 @@ qmplot(
   facets = . ~ schoolyr,
   data = input_3_longlat,
   maptype = "toner-lite",
-  geom = "polygon"
-) + scale_fill_distiller(palette='Spectral')
+  geom = "polygon",
+  legend = "bottom"
+) + 
+  scale_fill_distiller(palette='Spectral') +
+  labs(title = "Mean Difference-in-Difference All-Cause Absence Rate by School during Flu Season", fill="")
 
 ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-DID-all.png"))
 
@@ -98,8 +120,11 @@ qmplot(
   facets = . ~ schoolyr,
   data = input_3_longlat,
   maptype = "toner-lite",
-  geom = "polygon"
-) + scale_fill_distiller(palette='Spectral')
+  geom = "polygon",
+  legend = "bottom"
+) + 
+  scale_fill_distiller(palette='Spectral') +
+  labs(title = "Mean Difference-in-Difference Illness-Specific Absence Rate by School during Flu Season", fill="")
 
 ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-DID-ill.png"))
 
@@ -112,8 +137,11 @@ qmplot(
   facets = . ~ schoolyr,
   data = input_4_longlat,
   maptype = "toner-lite",
-  geom = "polygon"
-) + scale_fill_distiller(palette='Spectral')
+  geom = "polygon",
+  legend = "bottom"
+) + 
+  scale_fill_distiller(palette='Spectral') +
+  labs(title = "Mean Difference-in-Difference All-Cause Absence Rate by School during the Peak Week of Flu Season", fill="")
 
 ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-DID-all.png"))
 
@@ -125,8 +153,11 @@ qmplot(
   facets = . ~ schoolyr,
   data = input_4_longlat,
   maptype = "toner-lite",
-  geom = "polygon"
-) + scale_fill_distiller(palette='Spectral')
+  geom = "polygon",
+  legend = "bottom"
+) + 
+  scale_fill_distiller(palette='Spectral') +
+  labs(title = "Mean Difference-in-Difference Illness-Specific Absence Rate by School during the Peak Week of Flu Season", fill="")
 
 ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-DID-ill.png"))
 
@@ -139,8 +170,11 @@ qmplot(
   facets = . ~ schoolyr,
   data = input_5_longlat,
   maptype = "toner-lite",
-  geom = "polygon"
-)
+  geom = "polygon",
+  legend = "bottom"
+) + 
+  scale_fill_distiller(palette='Spectral') +
+  labs(title = "Mean Vaccination Coverage by School in each year", fill="")
 
 ggsave(filename=paste0(project_dir, "2c-P2-VaccinationCoverage.png"))
 
