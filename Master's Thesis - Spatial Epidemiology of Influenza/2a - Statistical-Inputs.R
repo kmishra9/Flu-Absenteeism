@@ -6,14 +6,12 @@
 ################################################################################
 source(here::here("Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of Influenza", "0 - Config.R"))
 
-# TODO: ENSURE 2011-12 DATA AND 2016-17 DATA IS INCLUDED IN peakwk inputs
-
 ################################################################################
 # Import data
 ################################################################################
 
-absentee_flu             = fread(file = flu_path_downsample) %>% as.tibble()
-absentee_peakwk          = fread(file = peakwk_path_downsample) %>% as.tibble()
+absentee_flu             = fread(file = flu_path) %>% as_tibble()
+absentee_peakwk          = fread(file = peakwk_path) %>% as_tibble()
 
 absentee_flu_limited     = absentee_flu %>% 
   select(school, schoolyr, grade, race, enrolled, dist.n, absent_all, absent_ill)
@@ -111,7 +109,7 @@ input_5 = vaccination_coverage_raw[grep("vx", vaccination_coverage_raw %>% names
   ) %>%
   rename(school = schoolname, vaccination_coverage = Mean) %>%
   select(school, dist.n, schoolyr, vaccination_coverage) %>%
-  as.tibble()
+  as_tibble()
   
 ################################################################################
 # Export several versions of aggregated input data

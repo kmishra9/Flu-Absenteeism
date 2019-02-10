@@ -63,7 +63,7 @@ spatial_input_5_path = paste0(project_dir, "2b-I5-Spatial-VaccinationCoverage.cs
 
 # Global variables
 pre_program_schoolyrs = list("2011-12","2012-13", "2013-14")
-program_schoolyrs = list("2014-15", "2015-16", "2016-17")
+program_schoolyrs = list("2014-15", "2015-16", "2016-17", "2017-18")
 
 # Other scripts
 source(here("Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of Influenza", "0 - Utils.R"))

@@ -53,28 +53,17 @@ WCCSD_not_found_names = WCCSD_absentee_school_names[!WCCSD_found]
 
 
 OUSD_not_found_aliases = list(
-  "ASCEND K-8"                         = str_subset(string = OUSD_school_shapes$schnam, pattern = "ASCEND"),
   "Brookfield Village Elementary"      = str_subset(string = OUSD_school_shapes$schnam, pattern = "Brookfield"),
   "Carl Munck Elementary"              = str_subset(string = OUSD_school_shapes$schnam, pattern = "Munck"),
   "Community United Elementary School" = str_subset(string = OUSD_school_shapes$schnam, pattern = "Community United"),
   "EnCompass Academy"                  = str_subset(string = OUSD_school_shapes$schnam, pattern = "EnCompass"),
-  "Glenview Elementary @ Sante Fe"     = str_subset(string = OUSD_school_shapes$schnam, pattern = "Glenview"),
   "Global Family School"               = str_subset(string = OUSD_school_shapes$schnam, pattern = "Global"),
-  "Hillcrest School"                   = str_subset(string = OUSD_school_shapes$schnam, pattern = "Hillcrest"),
-  "Hillcrest School (K-8)"             = str_subset(string = OUSD_school_shapes$schnam, pattern = "Hillcrest"),
   "International Community School"     = str_subset(string = OUSD_school_shapes$schnam, pattern = "International Community"),
   "Madison Park Lower Campus"          = "Madison Park Academy TK-5",
-  "Madison Park Upper Campus"          = "Madison Park Academy TK-5",
   "Manzanita Community School"         = str_subset(string = OUSD_school_shapes$schnam, pattern = "Manzanita Community"),
   "Martin Luther King Jr Elementary"   = str_subset(string = OUSD_school_shapes$schnam, pattern = "King"),
   "PLACE @ Prescott"                   = "Preparatory Literary Academy of Cultural Excellence",
-  "RISE Community School"              = str_subset(string = OUSD_school_shapes$schnam, pattern = "Rise Community"),
-  # All closed in 2013 and have no absentee data beyond 2011-12
-  "Hillside Academy"                   = "",
-  "Lakeview Elementary"                = "",
-  "Lazear Elementary"                  = "",
-  "Marshall Elementary"                = "",
-  "Maxwell Park International Academy" = ""
+  "RISE Community School"              = str_subset(string = OUSD_school_shapes$schnam, pattern = "Rise Community")
 )
 
 WCCSD_not_found_aliases = list(
