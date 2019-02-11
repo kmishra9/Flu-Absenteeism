@@ -53,7 +53,7 @@ input_2 = absentee_peakwk_limited %>%
 ################################################################################
 
 pre_program_means_flu = absentee_flu_limited %>%
-  filter(schoolyr %in% pre_program_schoolyrs) %>%
+  filter(program == 0) %>%
   group_by(school, dist.n) %>%
   summarize(
     pre_program_absence_rate_all = mean(absent_all),
@@ -74,7 +74,7 @@ input_3_did = absentee_flu_limited %>%
 ################################################################################
 
 pre_program_means_peakwk = absentee_peakwk_limited %>%
-  filter(schoolyr %in% pre_program_schoolyrs) %>%
+  filter(program == 0) %>%
   group_by(school, dist.n) %>%
   summarize(
     pre_program_absence_rate_all = mean(absent_all),

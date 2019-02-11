@@ -17,7 +17,6 @@ source(here::here("Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of 
 # Import school shape data & downsize
 ################################################################################
 
-# TODO: Transition to sf
 school_shapes = readOGR(dsn=school_shapes_dir, layer=school_shapes_layer)
 
 # Declare NCES_IDs (LEAID) documented above and filter by district
@@ -50,8 +49,6 @@ OUSD_not_found_names = OUSD_absentee_school_names[!OUSD_found]
 WCCSD_not_found_names = WCCSD_absentee_school_names[!WCCSD_found]
 
 # Mapping schools without an exact match to an alias that does appear 
-
-
 OUSD_not_found_aliases = list(
   "Brookfield Village Elementary"      = str_subset(string = OUSD_school_shapes$schnam, pattern = "Brookfield"),
   "Carl Munck Elementary"              = str_subset(string = OUSD_school_shapes$schnam, pattern = "Munck"),
@@ -135,3 +132,6 @@ ggsave(filename = paste0(project_dir, "1b-Study-Districts-Polygon-Plot.png"))
 
 write_csv(x = OUSD_study_school_shapes_longlat, path = OUSD_study_school_shapes_longlat_path)
 write_csv(x = WCCSD_study_school_shapes_longlat, path = WCCSD_study_school_shapes_longlat_path)
+
+write_rds(x = OUSD_study_school_shapes, path = OUSD_study_school_shapes_path)
+write_rds(x = WCCSD_study_school_shapes, path = WCCSD_study_school_shapes_path)

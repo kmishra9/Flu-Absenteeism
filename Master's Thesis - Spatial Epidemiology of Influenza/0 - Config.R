@@ -13,6 +13,7 @@ library(broom)
 library(ggplot2)
 library(ggmap)
 library(sp)
+library(spdep)
 #library(sf)
 library(rgdal)
 library(maptools)
@@ -44,6 +45,8 @@ vaccination_coverage_path = paste0(data_dir, "vaccination_coverage.RDS")
 school_shapes_dir = paste0(data_dir, "SABS_1516/")
 school_shapes_layer = "SABS_1516"
 
+OUSD_study_school_shapes_path = paste0(project_dir, "1b-OUSD-study-school-shapes.RDS")
+WCCSD_study_school_shapes_path = paste0(project_dir, "1b-WCCSD-study-school-shapes.RDS")
 OUSD_study_school_shapes_longlat_path = paste0(project_dir, "1b-OUSD-study-school-shapes-longlat.csv")
 WCCSD_study_school_shapes_longlat_path = paste0(project_dir, "1b-WCCSD-study-school-shapes-longlat.csv")
 
