@@ -72,8 +72,8 @@ spatial_input_8_path = paste0(project_dir, "2b-I8-Spatial-FluAbsenceRate_PreWeak
 spatial_input_9_path = paste0(project_dir, "2b-I9-Spatial-PeakwkAbsenceRate_PreWeakStrong.csv")
 
 # Results Paths
-raw_results = paste0(project_dir, "2d-P3-1-Raw-Results.RDS")
-extracted_results = paste0(project_dir, "2d-P3-2-Extracted-Results.RDS")
+raw_results_path = paste0(project_dir, "2d-P3-1-Raw-Results.RDS")
+extracted_results_path = paste0(project_dir, "2d-P3-2-Extracted-Results.RDS")
 
 # Global variables
 pre_program_schoolyrs = list("2011-12","2012-13", "2013-14")

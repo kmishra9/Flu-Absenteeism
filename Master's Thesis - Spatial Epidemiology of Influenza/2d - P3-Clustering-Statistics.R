@@ -220,4 +220,5 @@ for (result in names(results)) {
 # Export all results of clustering statistics for each statistical input
 ################################################################################
 
-write_rds(x = extracted_results, path = paste0())
+write_rds(x = raw_results, path = raw_results_path)
+write_rds(x = extracted_results, path = extracted_results_path)
