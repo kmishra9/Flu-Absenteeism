@@ -6,10 +6,6 @@
 ################################################################################
 
 # Load libraries
-library(tidyverse)
-library(data.table)
-library(broom)
-
 library(ggplot2)
 library(ggmap)
 library(sp)
@@ -22,6 +18,9 @@ library(here)
 library(assertthat)
 library(kableExtra)
 
+library(data.table)
+library(broom)
+library(tidyverse)
 
 # File paths
 data_dir = here("..", "Individual Projects - Data", "Flu-Absenteeism/")

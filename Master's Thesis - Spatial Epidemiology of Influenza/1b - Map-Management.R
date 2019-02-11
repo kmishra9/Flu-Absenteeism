@@ -91,12 +91,20 @@ WCCSD_study_school_shapes_longlat = WCCSD_study_school_shapes %>%
   tidy(region = "schnam") %>% 
   mutate(absentee_alias = id, dist.n = 0)
 
+# Update study_schooL_shape files with alias names as well to prep for clustering
+OUSD_study_school_shapes@data = OUSD_study_school_shapes@data %>% mutate(absentee_alias = schnam, dist.n = 1)
+WCCSD_study_school_shapes@data = WCCSD_study_school_shapes@data %>% mutate(absentee_alias = schnam, dist.n = 0)
+
 # Update values in absentee_alias column
 for (absentee_school_name in names(OUSD_not_found_aliases)) {
   shape_school_name = OUSD_not_found_aliases[[absentee_school_name]]
   
   if (shape_school_name != "") {
     OUSD_study_school_shapes_longlat = OUSD_study_school_shapes_longlat %>% 
+      mutate(absentee_alias = str_replace(string = absentee_alias, pattern = shape_school_name, replacement = absentee_school_name))
+    
+    # Update study_schooL_shape files with alias names as well to prep for clustering
+    OUSD_study_school_shapes@data = OUSD_study_school_shapes@data %>% 
       mutate(absentee_alias = str_replace(string = absentee_alias, pattern = shape_school_name, replacement = absentee_school_name))
   }
 }
@@ -106,6 +114,10 @@ for (absentee_school_name in names(WCCSD_not_found_aliases)) {
   
   if (shape_school_name != "") {
     WCCSD_study_school_shapes_longlat = WCCSD_study_school_shapes_longlat %>% 
+      mutate(absentee_alias = str_replace(string = absentee_alias, pattern = shape_school_name, replacement = absentee_school_name))
+    
+    # Update study_schooL_shape files with alias names as well to prep for clustering
+    WCCSD_study_school_shapes@data = WCCSD_study_school_shapes@data %>% 
       mutate(absentee_alias = str_replace(string = absentee_alias, pattern = shape_school_name, replacement = absentee_school_name))
   }
 }
