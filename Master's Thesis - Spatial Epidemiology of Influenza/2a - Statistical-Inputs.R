@@ -14,9 +14,9 @@ absentee_flu             = fread(file = flu_path) %>% as_tibble()
 absentee_peakwk          = fread(file = peakwk_path) %>% as_tibble()
 
 absentee_flu_limited     = absentee_flu %>% 
-  select(school, schoolyr, grade, race, enrolled, dist.n, absent_all, absent_ill)
+  select(school, schoolyr, grade, race, enrolled, dist.n, program, period, absent_all, absent_ill)
 absentee_peakwk_limited  = absentee_peakwk %>% 
-  select(school, schoolyr, grade, race, enrolled, dist.n, absent_all, absent_ill)
+  select(school, schoolyr, grade, race, enrolled, dist.n, program, period, absent_all, absent_ill)
 
 vaccination_coverage_raw = read_rds(path = vaccination_coverage_path)
 
@@ -110,6 +110,62 @@ input_5 = vaccination_coverage_raw[grep("vx", vaccination_coverage_raw %>% names
   rename(school = schoolname, vaccination_coverage = Mean) %>%
   select(school, dist.n, schoolyr, vaccination_coverage) %>%
   as_tibble()
+
+################################################################################
+# Input 6: Mean absence rate per school during flu season in the pre-program and post-program periods
+################################################################################
+
+input_6 = absentee_flu_limited %>%
+  group_by(school, dist.n, program) %>%
+  summarize(
+    absences_all = sum(absent_all),
+    absences_ill = sum(absent_ill),
+    student_days = n(),
+    absence_rate_all = mean(absent_all),
+    absence_rate_ill = mean(absent_ill)
+  )
+
+################################################################################
+# Input 7: Mean absence rate per school during the peak week in the pre-program and post-program periods
+################################################################################
+
+input_7 = absentee_peakwk_limited %>%
+  group_by(school, dist.n, program) %>%
+  summarize(
+    absences_all = sum(absent_all),
+    absences_ill = sum(absent_ill),
+    student_days = n(),
+    absence_rate_all = mean(absent_all),
+    absence_rate_ill = mean(absent_ill)
+  )
+
+################################################################################
+# Input 8: Mean absence rate per school during flu season in the pre-program, weak vaccine, and strong vaccine periods
+################################################################################
+
+input_8 = absentee_flu_limited %>%
+  group_by(school, dist.n, period) %>%
+  summarize(
+    absences_all = sum(absent_all),
+    absences_ill = sum(absent_ill),
+    student_days = n(),
+    absence_rate_all = mean(absent_all),
+    absence_rate_ill = mean(absent_ill)
+  )
+
+################################################################################
+# Input 9: Mean absence rate per school during flu season in the pre-program, weak vaccine, and strong vaccine periods
+################################################################################
+
+input_9 = absentee_peakwk_limited %>%
+  group_by(school, dist.n, period) %>%
+  summarize(
+    absences_all = sum(absent_all),
+    absences_ill = sum(absent_ill),
+    student_days = n(),
+    absence_rate_all = mean(absent_all),
+    absence_rate_ill = mean(absent_ill)
+  )
   
 ################################################################################
 # Export several versions of aggregated input data
@@ -120,3 +176,7 @@ write_csv(x = input_2, path = input_2_path)
 write_csv(x = input_3_did, path = input_3_path)
 write_csv(x = input_4_did, path = input_4_path)
 write_csv(x = input_5, path = input_5_path)
+write_csv(x = input_6, path = input_6_path)
+write_csv(x = input_7, path = input_7_path)
+write_csv(x = input_8, path = input_8_path)
+write_csv(x = input_9, path = input_9_path)
