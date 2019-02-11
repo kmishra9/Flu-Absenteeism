@@ -111,6 +111,23 @@ input_5 = vaccination_coverage_raw[grep("vx", vaccination_coverage_raw %>% names
   select(school, dist.n, schoolyr, vaccination_coverage) %>%
   as_tibble()
 
+# Updating school names to match absentee set
+absentee_school_names = read_rds(path = school_names_path)
+absentee_school_names = c(absentee_school_names$OUSD_school_names, absentee_school_names$WCCSD_school_names)
+vaccination_coverage_not_found_aliases = list(
+  "Brookfield Elementary"         = str_subset(string = absentee_school_names, pattern = "Brookfield"),
+  "Carl B. Munck Elementary"      = str_subset(string = absentee_school_names, pattern = "Munck"),
+  "Community United Elementary"   = str_subset(string = absentee_school_names, pattern = "Community United"),
+  "East Oakland Pride Elementary" = str_subset(string = absentee_school_names, pattern = "East Oakland"),
+  "EnCompass Academy Elementary"  = str_subset(string = absentee_school_names, pattern = "EnCompass"),
+  "Montalvin Manor Elementary"    = str_subset(string = absentee_school_names, pattern = "Montalvin"),
+  "Rise Community"                = str_subset(string = absentee_school_names, pattern = "RISE")
+)
+
+for (unfound_alias in names(vaccination_coverage_not_found_aliases)) {
+  input_5 = input_5 %>% mutate(school = str_replace(string = school, pattern = unfound_alias, replacement = vaccination_coverage_not_found_aliases[[unfound_alias]]))
+}
+
 ################################################################################
 # Input 6: Mean absence rate per school during flu season in the pre-program and post-program periods
 ################################################################################

@@ -38,7 +38,7 @@ absentee_school_names = read_rds(path = school_names_path)
 OUSD_absentee_school_names = absentee_school_names$OUSD_school_names
 WCCSD_absentee_school_names = absentee_school_names$WCCSD_school_names
 
-OUSD_found = tolower(OUSD_absentee_school_names) %in% tolower(OUSD_school_shapes$schnam)
+OUSD_found = OUSD_absentee_school_names %in% OUSD_school_shapes$schnam
 WCCSD_found = tolower(WCCSD_absentee_school_names) %in% tolower(WCCSD_school_shapes$schnam)
 
 OUSD_found_names = OUSD_absentee_school_names[OUSD_found]
@@ -53,6 +53,7 @@ OUSD_not_found_aliases = list(
   "Brookfield Village Elementary"      = str_subset(string = OUSD_school_shapes$schnam, pattern = "Brookfield"),
   "Carl Munck Elementary"              = str_subset(string = OUSD_school_shapes$schnam, pattern = "Munck"),
   "Community United Elementary School" = str_subset(string = OUSD_school_shapes$schnam, pattern = "Community United"),
+  "East Oakland PRIDE Elementary"      = str_subset(string = OUSD_school_shapes$schnam, pattern = "East Oakland Pride"),
   "EnCompass Academy"                  = str_subset(string = OUSD_school_shapes$schnam, pattern = "EnCompass"),
   "Global Family School"               = str_subset(string = OUSD_school_shapes$schnam, pattern = "Global"),
   "International Community School"     = str_subset(string = OUSD_school_shapes$schnam, pattern = "International Community"),
