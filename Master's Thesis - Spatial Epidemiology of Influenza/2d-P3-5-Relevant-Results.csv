@@ -1,0 +1,23 @@
+Input,Grouping,Moran I Statistic,Expectation,Variance,P-Value
+input_3_moran_ill,2014-15,-0.0605,-0.012,0.0045,0.765
+input_3_moran_ill,2015-16,-0.09,-0.012,0.0046,0.876
+input_3_moran_ill,2016-17,-0.0541,-0.012,0.0046,0.732
+input_3_moran_ill,2017-18,-0.0534,-0.012,0.0042,0.737
+input_4_moran_ill,2014-15,0.0467,-0.012,0.0046,0.193
+input_4_moran_ill,2015-16,-0.0724,-0.012,0.0046,0.812
+input_4_moran_ill,2016-17,0.0019,-0.012,0.0047,0.419
+input_4_moran_ill,2017-18,0.2971,-0.012,0.0046,p < 0.001
+input_6_moran_ill,Pre-Program,-0.0158,-0.012,0.0045,0.522
+input_6_moran_ill,Intervention Period,0.1347,-0.012,0.0046,0.015
+input_7_moran_ill,Pre-Program,0.0303,-0.012,0.0047,0.267
+input_7_moran_ill,Intervention Period,0.1962,-0.012,0.0047,0.001
+input_8_moran_ill,Pre-Program,-0.0158,-0.012,0.0045,0.522
+input_8_moran_ill,Ineffective Vaccine,0.124,-0.012,0.0045,0.021
+input_8_moran_ill,Effective Vaccine,0.1557,-0.012,0.0047,0.007
+input_9_moran_ill,Pre-Program,0.0303,-0.012,0.0047,0.267
+input_9_moran_ill,Ineffective Vaccine,0.1107,-0.012,0.0047,0.036
+input_9_moran_ill,Effective Vaccine,0.2379,-0.012,0.0047,p < 0.001
+input_5_moran_ill,2014-15,0.0834,-0.0263,0.0145,0.181
+input_5_moran_ill,2015-16,-0.1346,-0.025,0.0167,0.802
+input_5_moran_ill,2016-17,0.0783,-0.025,0.0158,0.205
+input_5_moran_ill,2017-18,0.181,-0.0244,0.0194,0.07

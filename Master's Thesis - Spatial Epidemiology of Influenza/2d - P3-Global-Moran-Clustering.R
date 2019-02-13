@@ -270,6 +270,11 @@ if (mc) {
 extracted_results_all = extracted_results[str_which(string=extracted_results[["Input"]], pattern="all"),]
 extracted_results_ill = extracted_results[str_which(string=extracted_results[["Input"]], pattern="ill"),]
 
+relevant_results = extracted_results_ill %>% 
+  slice(str_which(string = Input, pattern= "3|4|6|7|8|9")) %>% 
+  rbind( extracted_results_ill %>% 
+           slice(str_which(string = Input, pattern= "5")))
+
 ################################################################################
 # Export all results of clustering statistics for each statistical input
 ################################################################################
@@ -278,3 +283,4 @@ write_rds(x = results, path = raw_results_path)
 write_csv(x = extracted_results, path = extracted_results_path)
 write_csv(x = extracted_results_all, path = extracted_results_all_path)
 write_csv(x = extracted_results_ill, path = extracted_results_ill_path)
+write_csv(x = relevant_results, path = relevant_results_path)

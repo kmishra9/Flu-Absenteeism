@@ -76,6 +76,7 @@ raw_results_path           = paste0(project_dir, "2d-P3-1-Raw-Results.RDS")
 extracted_results_path     = paste0(project_dir, "2d-P3-2-Extracted-Results.csv")
 extracted_results_all_path = paste0(project_dir, "2d-P3-3-Extracted-Results_all.csv")
 extracted_results_ill_path = paste0(project_dir, "2d-P3-4-Extracted-Results_ill.csv")
+relevant_results_path = paste0(project_dir, "2d-P3-5-Relevant-Results.csv")
 
 
 # Global variables
