@@ -245,8 +245,12 @@ if (mc) {
     
     for (grouping in names(input_x_moran)){
       raw_result = input_x_moran[[grouping]]
-      estimate   = raw_result[["estimate"]]
+      estimate   = round(raw_result[["estimate"]], 4)
       p_value    = raw_result[["p.value"]]
+      
+      if (p_value == 0) {
+        p_value = "p < 0.001"
+      }
       
       extracted_results = extracted_results %>% 
         add_row(
@@ -259,7 +263,6 @@ if (mc) {
         )
     }
   }
-  
 }
 
 
