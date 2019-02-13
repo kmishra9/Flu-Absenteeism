@@ -1,7 +1,7 @@
 ################################################################################
 # Master's Thesis - Spatial Epidemiology of Absenteeism 
 # Shoo the Flu Evaluation
-# 2012-2017 Spatial Epidemiology Analysis
+# 2011-2018 Spatial Epidemiology Analysis
 # Map management file for creating visualizations for Objectives 1 & 2: 
 # Objective 1: To examine the pre-program and post-program spatial distribution of illness-specific and all-cause absenteeism following the introduction of SLIV
 # Objective 2: To examine the spatial distribution of vaccination coverage following the introduction of SLIV

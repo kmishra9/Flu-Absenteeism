@@ -1,7 +1,7 @@
 ################################################################################
 # Master's Thesis - Spatial Epidemiology of Absenteeism 
 # Shoo the Flu Evaluation
-# 2012-2017 Spatial Epidemiology Analysis
+# 2011-2018 Spatial Epidemiology Analysis
 # Transforms and cleans shape file to be ggplot-friendly and cleans data to include only relevant study schools
 
 # Documentation

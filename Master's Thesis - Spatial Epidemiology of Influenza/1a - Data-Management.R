@@ -1,7 +1,7 @@
 ################################################################################
 # Master's Thesis - Spatial Epidemiology of Absenteeism 
 # Shoo the Flu Evaluation
-# 2012-2017 Spatial Epidemiology Analysis
+# 2011-2018 Spatial Epidemiology Analysis
 # Data Management file for raw dataset import, cleaning, and export
 ################################################################################
 source(here::here("Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of Influenza", "0 - Config.R"))
