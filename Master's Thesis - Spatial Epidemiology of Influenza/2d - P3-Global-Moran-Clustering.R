@@ -26,7 +26,7 @@ WCCSD_study_school_shapes = read_rds(path = WCCSD_study_school_shapes_path)
 all_study_school_shapes = raster::union(OUSD_study_school_shapes, WCCSD_study_school_shapes)
 
 ################################################################################
-# Moran's I - Per Year, Program Period (Pre/Post), Vaccine Effectiveness Period (Pre/Weak/Strong)
+# Global Moran's I - Per Year, Program Period (Pre/Post), Vaccine Effectiveness Period (Pre/Weak/Strong)
 ################################################################################
 
 calculate_Morans = function(input_shape_file, grouping_column, clustering_column, queen = TRUE, style = "W", zero.policy = FALSE, randomisation = TRUE, mc = FALSE, nsim = 9999) {
