@@ -246,7 +246,7 @@ if (mc) {
     for (grouping in names(input_x_moran)){
       raw_result = input_x_moran[[grouping]]
       estimate   = round(raw_result[["estimate"]], 4)
-      p_value    = raw_result[["p.value"]]
+      p_value    = round(raw_result[["p.value"]], 3)
       
       if (p_value == 0) {
         p_value = "p < 0.001"
