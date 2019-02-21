@@ -9,3 +9,7 @@
 # Motivation: https://github.com/gisUTM/spatialplots
 # https://aledemogr.com/2017/10/16/global-and-local-measures-of-spatial-autocorrelation/
 # Building hotspot maps based on Local Moran statistics
+
+# Kuldorff Function: https://www.rdocumentation.org/packages/SpatialEpi/versions/1.2.3/topics/kulldorff
+
+# 

@@ -14,8 +14,10 @@ absentee_all = fread(file = raw_data_path) %>%
   mutate(program = case_when(schoolyr %in% pre_program_schoolyrs ~ 0,
                              schoolyr %in% program_schoolyrs ~ 1)) %>% 
   mutate(period = case_when(schoolyr %in% pre_program_schoolyrs ~ 0, 
-                            schoolyr %in% weak_vaccine_schoolyrs ~ 1,
-                            schoolyr %in% strong_vaccine_schoolyrs ~ 2))
+                            schoolyr %in% LAIV_schoolyrs ~ 1,
+                            schoolyr %in% IIV_schoolyrs ~ 2)) %>% 
+  filter(schoolyr != "2017-18")
+
 absentee_all_downsample = down_sample(data = absentee_all)
 
 ################################################################################

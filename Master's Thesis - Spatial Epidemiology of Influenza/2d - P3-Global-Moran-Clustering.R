@@ -63,6 +63,25 @@ calculate_Morans = function(input_shape_file, grouping_column, clustering_column
   return(morans_by_group)
 }
 
+corellogram_Morans = function(input_shape_file, grouping_column, clustering_column, queen = TRUE, style = "W", order = 8, zero.policy = TRUE, randomisation = TRUE) {
+  assert_that(!is.null(input_shape_file[[grouping_column]]) & !is.null(input_shape_file[[clustering_column]]))
+  
+  morans_by_group = list()
+  
+  # Partition by unique values in grouping_column, find neighbors, and create Morans corellogram
+  for (unique_grouping_value in as.factor(sort(unique(input_shape_file[[grouping_column]])))) {
+    select_on_unique_grouping_value = input_shape_file[[grouping_column]] == unique_grouping_value
+    subsetted_input_shape_file = input_shape_file[select_on_unique_grouping_value,]
+    
+    neighbors = poly2nb(pl = subsetted_input_shape_file, queen = queen)
+    list_weights = nb2listw(neighbours = neighbors, style = "W", zero.policy = zero.policy)
+    
+    morans_by_group[[unique_grouping_value]] = sp.correlogram(neighbours=neighbors, var = subsetted_input_shape_file[[clustering_column]], method = "I", style = style, zero.policy = zero.policy, randomisation = randomisation, order = order)
+  }
+  
+  return(morans_by_group)
+}
+
 # Input 1 (year)
 input_1_shapes = sp::merge(
   x = all_study_school_shapes,
@@ -184,6 +203,15 @@ input_9_moran_ill = calculate_Morans(input_shape_file = input_9_shapes, grouping
 
 names(input_9_moran_all) = names(input_8_moran_all)
 names(input_9_moran_ill) = names(input_8_moran_all)
+
+################################################################################
+# Fit relevant correlograms
+################################################################################
+
+input_5_correlograms = corellogram_Morans(input_shape_file = input_5_shapes, grouping_column = "schoolyr", clustering_column = "vaccination_coverage", randomisation = TRUE, order=4)
+
+input_9_correlograms_ill = corellogram_Morans(input_shape_file = input_9_shapes, grouping_column = "period", clustering_column = "absence_rate_ill", randomisation = TRUE)
+
 
 ################################################################################
 # Extract Results

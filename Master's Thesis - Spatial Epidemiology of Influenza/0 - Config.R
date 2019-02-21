@@ -14,7 +14,6 @@ library(ggplot2)
 library(ggmap)
 library(sp)
 library(spdep)
-#library(sf)
 library(rgdal)
 library(maptools)
 
@@ -76,14 +75,14 @@ raw_results_path           = paste0(project_dir, "2d-P3-1-Raw-Results.RDS")
 extracted_results_path     = paste0(project_dir, "2d-P3-2-Extracted-Results.csv")
 extracted_results_all_path = paste0(project_dir, "2d-P3-3-Extracted-Results_all.csv")
 extracted_results_ill_path = paste0(project_dir, "2d-P3-4-Extracted-Results_ill.csv")
-relevant_results_path = paste0(project_dir, "2d-P3-5-Relevant-Results.csv")
+relevant_results_path      = paste0(project_dir, "2d-P3-5-Relevant-Results.csv")
 
 
 # Global variables
 pre_program_schoolyrs      = list("2011-12","2012-13", "2013-14")
 program_schoolyrs          = list("2014-15", "2015-16", "2016-17", "2017-18")
-weak_vaccine_schoolyrs     = list("2014-15", "2015-16")
-strong_vaccine_schoolyrs   = list("2016-17", "2017-18")
+LAIV_schoolyrs             = list("2014-15", "2015-16")
+IIV_schoolyrs              = list("2016-17", "2017-18")
 
 # Other scripts
 source(here("Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of Influenza", "0 - Utils.R"))

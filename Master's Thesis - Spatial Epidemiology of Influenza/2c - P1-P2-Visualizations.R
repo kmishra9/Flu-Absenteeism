@@ -128,7 +128,7 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral') +
-  labs(title = "Mean Difference-in-Difference Illness-Specific Absence Rate by School during Flu Season", fill="")
+  labs(title = "Figure 1: Mean Difference-in-Difference Illness-Specific Absence Rate by School during Flu Season", fill="")
 
 ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-DID-ill.png"))
 
@@ -161,7 +161,7 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral') +
-  labs(title = "Mean Difference-in-Difference Illness-Specific Absence Rate by School during the Peak Week of Flu Season", fill="")
+  labs(title = "Figure 2: Mean Difference-in-Difference Illness-Specific Absence Rate by School during the Peak Week of Flu Season", fill="")
 
 ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-DID-ill.png"))
 
@@ -178,7 +178,7 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral', direction=1) +
-  labs(title = "Mean Vaccination Coverage by School in each year", fill="")
+  labs(title = "Figure 7: Mean Vaccination Coverage by School in each year", fill="")
 
 ggsave(filename=paste0(project_dir, "2c-P2-VaccinationCoverage.png"))
 
@@ -215,7 +215,7 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral') +
-  labs(title = "Mean Illness-Specific Absence Rate by School during Flu Season", fill="") +
+  labs(title = "Figure 3: Mean Illness-Specific Absence Rate by School during Flu Season", fill="") +
   theme(legend.key.width = unit(1.5, "cm"))
 
 ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-ill_PrePost.png"))
@@ -253,14 +253,14 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral') +
-  labs(title = "Mean Illness-Specific Absence Rate by School during the Peak Week of Flu Season", fill="") +
+  labs(title = "Figure 4: Mean Illness-Specific Absence Rate by School during the Peak Week of Flu Season", fill="") +
   theme(legend.key.width = unit(1.5, "cm"))
 
 ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-ill_PrePost.png"))
 
 # Input 8
 input_8_longlat = input_8_longlat %>% mutate(period = as.factor(period))
-levels(input_8_longlat$period) = c("Pre-Program", "Ineffective Vaccine", "Effective Vaccine")
+levels(input_8_longlat$period) = c("Pre-Program", "STF Vaccine Type: LAIV", "STF Vaccine Type: IIV")
 
 qmplot(
   x = long,
@@ -291,14 +291,14 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral') +
-  labs(title = "Mean Illness-Specific Absence Rate by School during Flu Season", fill="") +
+  labs(title = "Figure 5: Mean Illness-Specific Absence Rate by School during Flu Season", fill="") +
   theme(legend.key.width = unit(1.5, "cm"))
 
 ggsave(filename=paste0(project_dir, "2c-P1-FluAbsenceRate-ill_PreWeakStrong.png"))
 
 # Input 9
 input_9_longlat = input_9_longlat %>% mutate(period = as.factor(period))
-levels(input_9_longlat$period) = c("Pre-Program", "Ineffective Vaccine", "Effective Vaccine")
+levels(input_9_longlat$period) = c("Pre-Program", "STF Vaccine Type: LAIV", "STF Vaccine Type: IIV")
 
 qmplot(
   x = long,
@@ -329,7 +329,7 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral') +
-  labs(title = "Mean Illness-Specific Absence Rate by School during the Peak Week of Flu Season", fill="") +
+  labs(title = "Figure 6: Mean Illness-Specific Absence Rate by School during the Peak Week of Flu Season", fill="") +
   theme(legend.key.width = unit(1.5, "cm"))
 
 ggsave(filename=paste0(project_dir, "2c-P1-PeakwkAbsenceRate-ill_PreWeakStrong.png"))

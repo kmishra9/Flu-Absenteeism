@@ -60,7 +60,7 @@ pre_program_means_flu = absentee_flu_limited %>%
     pre_program_absence_rate_ill = mean(absent_ill)
   )
 
-input_3_did = absentee_flu_limited %>%
+input_3 = absentee_flu_limited %>%
   filter(schoolyr %in% program_schoolyrs) %>%
   group_by(school, dist.n, schoolyr) %>%
   left_join(pre_program_means_flu) %>%
@@ -81,7 +81,7 @@ pre_program_means_peakwk = absentee_peakwk_limited %>%
     pre_program_absence_rate_ill = mean(absent_ill)
   )
 
-input_4_did = absentee_peakwk_limited %>%
+input_4 = absentee_peakwk_limited %>%
   filter(schoolyr %in% program_schoolyrs) %>%
   group_by(school, dist.n, schoolyr) %>%
   left_join(pre_program_means_peakwk) %>%
@@ -157,7 +157,7 @@ input_7 = absentee_peakwk_limited %>%
   )
 
 ################################################################################
-# Input 8: Mean absence rate per school during flu season in the pre-program, weak vaccine, and strong vaccine periods
+# Input 8: Mean absence rate per school during flu season in the pre-program, LAIV, and IIV periods
 ################################################################################
 
 input_8 = absentee_flu_limited %>%
@@ -171,7 +171,7 @@ input_8 = absentee_flu_limited %>%
   )
 
 ################################################################################
-# Input 9: Mean absence rate per school during flu season in the pre-program, weak vaccine, and strong vaccine periods
+# Input 9: Mean absence rate per school during flu season in the pre-program, LAIV, and IIV periods
 ################################################################################
 
 input_9 = absentee_peakwk_limited %>%
@@ -190,8 +190,8 @@ input_9 = absentee_peakwk_limited %>%
 
 write_csv(x = input_1, path = input_1_path)
 write_csv(x = input_2, path = input_2_path)
-write_csv(x = input_3_did, path = input_3_path)
-write_csv(x = input_4_did, path = input_4_path)
+write_csv(x = input_3, path = input_3_path)
+write_csv(x = input_4, path = input_4_path)
 write_csv(x = input_5, path = input_5_path)
 write_csv(x = input_6, path = input_6_path)
 write_csv(x = input_7, path = input_7_path)
