@@ -74,9 +74,19 @@ corellogram_Morans = function(input_shape_file, grouping_column, clustering_colu
     subsetted_input_shape_file = input_shape_file[select_on_unique_grouping_value,]
     
     neighbors = poly2nb(pl = subsetted_input_shape_file, queen = queen)
-    list_weights = nb2listw(neighbours = neighbors, style = "W", zero.policy = zero.policy)
+    list_weights = nb2listw(neighbours = neighbors,
+                            style = style,
+                            zero.policy = zero.policy)
     
-    morans_by_group[[unique_grouping_value]] = sp.correlogram(neighbours=neighbors, var = subsetted_input_shape_file[[clustering_column]], method = "I", style = style, zero.policy = zero.policy, randomisation = randomisation, order = order)
+    morans_by_group[[unique_grouping_value]] = sp.correlogram(
+      neighbours = neighbors,
+      var = subsetted_input_shape_file[[clustering_column]],
+      method = "I",
+      style = style,
+      zero.policy = zero.policy,
+      randomisation = randomisation,
+      order = order
+    )
   }
   
   return(morans_by_group)
