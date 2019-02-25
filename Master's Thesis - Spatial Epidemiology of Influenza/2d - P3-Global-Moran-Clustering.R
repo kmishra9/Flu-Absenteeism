@@ -196,7 +196,7 @@ input_8_shapes = sp::merge(
 input_8_moran_all = calculate_Morans(input_shape_file = input_8_shapes, grouping_column = "period", clustering_column = "absence_rate_all")
 input_8_moran_ill = calculate_Morans(input_shape_file = input_8_shapes, grouping_column = "period", clustering_column = "absence_rate_ill")
 
-names(input_8_moran_all) = c("Pre-Program", "Ineffective Vaccine", "Effective Vaccine")
+names(input_8_moran_all) = c("Pre-Program", "Primary STF Vaccine Type: LAIV", "Primary STF Vaccine Type: IIV")
 names(input_8_moran_ill) = names(input_8_moran_all)
 
 # Input 9 (period - PreWeakStrong vaccines)
