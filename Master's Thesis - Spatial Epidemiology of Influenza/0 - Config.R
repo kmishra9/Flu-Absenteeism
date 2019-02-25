@@ -56,8 +56,8 @@ input_4_path = paste0(project_dir, "2a-I4-PeakwkAbsenceRate_DID.csv")
 input_5_path = paste0(project_dir, "2a-I5-VaccinationCoverage.csv")
 input_6_path = paste0(project_dir, "2a-I6-FluAbsenceRate_PrePost.csv")
 input_7_path = paste0(project_dir, "2a-I7-PeakwkAbsenceRate_PrePost.csv")
-input_8_path = paste0(project_dir, "2a-I8-FluAbsenceRate_PreWeakStrong.csv")
-input_9_path = paste0(project_dir, "2a-I9-PeakwkAbsenceRate_PreWeakStrong.csv")
+input_8_path = paste0(project_dir, "2a-I8-FluAbsenceRate_PreLaivIiv.csv")
+input_9_path = paste0(project_dir, "2a-I9-PeakwkAbsenceRate_PreLaivIiv.csv")
 
 # Spatial Input Paths
 spatial_input_1_path = paste0(project_dir, "2b-I1-Spatial-FluAbsenceRate.csv")
@@ -67,8 +67,8 @@ spatial_input_4_path = paste0(project_dir, "2b-I4-Spatial-PeakwkAbsenceRate_DID.
 spatial_input_5_path = paste0(project_dir, "2b-I5-Spatial-VaccinationCoverage.csv")
 spatial_input_6_path = paste0(project_dir, "2b-I6-Spatial-FluAbsenceRate_PrePost.csv")
 spatial_input_7_path = paste0(project_dir, "2b-I7-Spatial-PeakwkAbsenceRate_PrePost.csv")
-spatial_input_8_path = paste0(project_dir, "2b-I8-Spatial-FluAbsenceRate_PreWeakStrong.csv")
-spatial_input_9_path = paste0(project_dir, "2b-I9-Spatial-PeakwkAbsenceRate_PreWeakStrong.csv")
+spatial_input_8_path = paste0(project_dir, "2b-I8-Spatial-FluAbsenceRate_PreLaivIiv.csv")
+spatial_input_9_path = paste0(project_dir, "2b-I9-Spatial-PeakwkAbsenceRate_PreLaivIiv.csv")
 
 # Results Paths
 raw_results_path           = paste0(project_dir, "2d-P3-1-Raw-Results.RDS")

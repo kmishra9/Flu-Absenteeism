@@ -128,6 +128,9 @@ for (unfound_alias in names(vaccination_coverage_not_found_aliases)) {
   input_5 = input_5 %>% mutate(school = str_replace(string = school, pattern = unfound_alias, replacement = vaccination_coverage_not_found_aliases[[unfound_alias]]))
 }
 
+# Remove 2017-18 Vaccination data
+input_5 = input_5 %>% filter(schoolyr != "2017-18")
+
 ################################################################################
 # Input 6: Mean absence rate per school during flu season in the pre-program and post-program periods
 ################################################################################

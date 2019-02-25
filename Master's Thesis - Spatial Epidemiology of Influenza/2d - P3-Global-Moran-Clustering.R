@@ -3,7 +3,7 @@
 # Shoo the Flu Evaluation
 # 2011-2018 Spatial Epidemiology Analysis
 # Cluster analysis file for generating numerical measures of clustering for Objective 3: 
-# Objective 3: To find and characterize global and local clustering in absenteeism and vaccination coverage following the introduction of SLIV and understand how clusters of high/low vaccination coverage are correlated with clusters of high/low absenteeism
+# Objective 3: To find and characterize global and local clustering in absenteeism and vaccination coverage following the introduction of SLIV and understand how clusters of high/low vaccination coverage are correlated with clusters of high/low absenteeism. 
 ################################################################################
 source(here::here("Flu-Absenteeism", "Master's Thesis - Spatial Epidemiology of Influenza", "0 - Config.R"))
 
