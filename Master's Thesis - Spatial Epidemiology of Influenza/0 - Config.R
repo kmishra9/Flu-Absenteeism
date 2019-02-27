@@ -16,6 +16,8 @@ library(sp)
 library(spdep)
 library(rgdal)
 library(maptools)
+library(scanstatistics)
+library(rgeos)
 
 library(here)
 library(assertthat)

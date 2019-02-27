@@ -84,7 +84,7 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral') +
-  labs(title = "Figure 1: Mean Difference-in-Difference Illness-Specific\n Absence Rate by School during Flu Season", fill="") +
+  labs(title = "Mean Difference-in-Difference Illness-Specific\n Absence Rate by School during Flu Season", fill="") +
   theme(plot.title = element_text(size=10))
 
 ggsave(filename=paste0(project_dir, "2c-P1-Figure-1-FluAbsenceRate-DID-ill.png"))
@@ -120,7 +120,7 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral') +
-  labs(title = "Figure 2: Mean Difference-in-Difference Illness-Specific\n Absence Rate by School during the Peak Week of Flu Season", fill="") +
+  labs(title = "Mean Difference-in-Difference Illness-Specific\n Absence Rate by School during the Peak Week of Flu Season", fill="") +
   theme(plot.title = element_text(size=10))
 
 ggsave(filename=paste0(project_dir, "2c-P1-Figure-2-PeakwkAbsenceRate-DID-ill.png"))
@@ -155,7 +155,7 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral', direction=1) +
-  labs(title = "Figure 8: Mean Vaccination Coverage by School in each year", fill="") 
+  labs(title = "Mean Vaccination Coverage by School in each year", fill="") 
 
 ggsave(filename=paste0(project_dir, "2c-P2-Figure-8-VaccinationCoverage.png"))
 
@@ -176,7 +176,7 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral') +
-  labs(title = "Figure 3: Mean Illness-Specific Absence Rate by School during Flu Season", fill="") +
+  labs(title = "Mean Illness-Specific Absence Rate by School during Flu Season", fill="") +
   theme(plot.title = element_text(size=10))
 
 ggsave(filename=paste0(project_dir, "2c-P1-Figure-3-FluAbsenceRate-ill_PrePost.png"))
@@ -198,7 +198,7 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral') +
-  labs(title = "Figure 5: Mean Illness-Specific Absence Rate by School during the Peak Week of Flu Season", fill="") +
+  labs(title = "Mean Illness-Specific Absence Rate by School during the Peak Week of Flu Season", fill="") +
   theme(plot.title = element_text(size=10))
 
 ggsave(filename=paste0(project_dir, "2c-P1-Figure-5-PeakwkAbsenceRate-ill_PrePost.png"))
@@ -220,7 +220,7 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral') +
-  labs(title = "Figure 4: Mean Illness-Specific Absence Rate by School during Flu Season", fill="") +
+  labs(title = "Mean Illness-Specific Absence Rate by School during Flu Season", fill="") +
   theme(plot.title = element_text(size=12))
 
 ggsave(filename=paste0(project_dir, "2c-P1-Figure-4-FluAbsenceRate-ill_PreLaivIiv.png"))
@@ -242,7 +242,7 @@ qmplot(
   legend = "bottom"
 ) + 
   scale_fill_distiller(palette='Spectral') +
-  labs(title = "Figure 6: Mean Illness-Specific Absence Rate by School during the Peak Week of Flu Season", fill="") +
+  labs(title = "Mean Illness-Specific Absence Rate by School during the Peak Week of Flu Season", fill="") +
   theme(plot.title = element_text(size=10))
 
 ggsave(filename=paste0(project_dir, "2c-P1-Figure-6-PeakwkAbsenceRate-ill_PreLaivIiv.png"))

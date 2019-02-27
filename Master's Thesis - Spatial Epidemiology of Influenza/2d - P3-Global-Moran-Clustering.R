@@ -26,7 +26,7 @@ WCCSD_study_school_shapes = read_rds(path = WCCSD_study_school_shapes_path)
 all_study_school_shapes = raster::union(OUSD_study_school_shapes, WCCSD_study_school_shapes)
 
 ################################################################################
-# Global Moran's I - Per Year, Program Period (Pre/Post), Vaccine Effectiveness Period (Pre/Weak/Strong)
+# Define functions for Global Moran's I
 ################################################################################
 
 calculate_Morans = function(input_shape_file, grouping_column, clustering_column, queen = TRUE, style = "W", zero.policy = FALSE, randomisation = TRUE, mc = FALSE, nsim = 9999) {
@@ -64,6 +64,16 @@ calculate_Morans = function(input_shape_file, grouping_column, clustering_column
 }
 
 corellogram_Morans = function(input_shape_file, grouping_column, clustering_column, queen = TRUE, style = "W", order = 8, zero.policy = TRUE, randomisation = TRUE) {
+  # @Description: "Facet_wrap" for generating a correlogram of Global Moran's I on every unique element in grouping_column
+  # @Arg: input_shape_file: an SPDF that countains a grouping_colum
+  # @Arg: grouping_column: a string column name of a column on which input_shape_file should be separated on and Moran's I calculated on each unique group
+  # @Arg: clustering_column: a string column name containing values for which clustering should be determined with Moran's I
+  # @Arg: queen: a boolean argument passed to poly2nb determining neighbor type
+  # @Arg: style: a character argument passed to nb2listw determining style
+  # @Arg: order: the maximum order of neighbor to include in calculation of the spatial lag variable
+  # @Arg: zero.policy: a boolean argument passed to nb2listw and moran.mc determining whether polygons without neighbors should error (zero.policy = FALSE) or continue quietly while setting lagging variables to 0 (zero.policy = TRUE)
+  # @Arg: randomisation: a boolean argument determining whether Moran's I is computed under randomisation or normality (assumption of variance) - only applicable if mc=FALSE
+  # @Return: a named list where names correspond to unique elements in grouping_column and values are the result of running sp.correlogram on the input shape file faceted by elements of grouping_column. Individual elements of the list are printable and plottable
   assert_that(!is.null(input_shape_file[[grouping_column]]) & !is.null(input_shape_file[[clustering_column]]))
   
   morans_by_group = list()
@@ -91,6 +101,10 @@ corellogram_Morans = function(input_shape_file, grouping_column, clustering_colu
   
   return(morans_by_group)
 }
+
+################################################################################
+# Calculate Global Moran's I - Per Year, Program Period (Pre/Post), Primary STF Vaccine Type Period (Pre/LAIV/IIV)
+################################################################################
 
 # Input 1 (year)
 input_1_shapes = sp::merge(
@@ -220,7 +234,16 @@ names(input_9_moran_ill) = names(input_8_moran_all)
 
 input_5_correlograms = corellogram_Morans(input_shape_file = input_5_shapes, grouping_column = "schoolyr", clustering_column = "vaccination_coverage", randomisation = TRUE, order=4)
 
+plot(input_5_correlograms$`2014-15`, main = "2014-2015")
+plot(input_5_correlograms$`2015-16`, main = "2015-2016")
+plot(input_5_correlograms$`2016-17`, main = "2016-2017")
+
+
 input_9_correlograms_ill = corellogram_Morans(input_shape_file = input_9_shapes, grouping_column = "period", clustering_column = "absence_rate_ill", randomisation = TRUE)
+
+plot(input_9_correlograms_ill$`0`, main = "Pre-Program")
+plot(input_9_correlograms_ill$`1`, main = "Primary STF Vaccine Type: LAIV")
+plot(input_9_correlograms_ill$`2`, main = "Primary STF Vaccine Type: IIV")
 
 
 ################################################################################
