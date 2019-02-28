@@ -24,10 +24,15 @@ input_9 = read_csv(file = input_9_path) %>% mutate(school_dist = paste0(school, 
 
 OUSD_study_school_shapes = read_rds(path = OUSD_study_school_shapes_path)
 WCCSD_study_school_shapes = read_rds(path = WCCSD_study_school_shapes_path)
+
+OUSD_study_school_shapes$school_dist = paste0(OUSD_study_school_shapes$absentee_alias, "-", OUSD_study_school_shapes$dist.n)
+WCCSD_study_school_shapes$school_dist = paste0(WCCSD_study_school_shapes$absentee_alias, "-", WCCSD_study_school_shapes$dist.n)
+
 all_study_school_shapes = raster::union(OUSD_study_school_shapes, WCCSD_study_school_shapes)
 
 # Ordering by absentee_alias-dist.n to match the eventual ordering of counts
-all_study_school_shapes$school_dist = paste0(all_study_school_shapes$absentee_alias, "-", all_study_school_shapes$dist.n)
+OUSD_study_school_shapes = OUSD_study_school_shapes[order(OUSD_study_school_shapes$school_dist),]
+WCCSD_study_school_shapes = WCCSD_study_school_shapes[order(WCCSD_study_school_shapes$school_dist),]
 all_study_school_shapes = all_study_school_shapes[order(all_study_school_shapes$school_dist),]
 
 ################################################################################
@@ -51,9 +56,9 @@ calculate_KSSS = function(centroids, statistical_input, time_column = "schoolyr"
   # @Arg: heat_map_title: a string used as the title for a heat_map if one is drawn
   # @Arg: heat_map_caption: a string used as the caption for a heat_map if one is drawn
   # @Output: plots a heatmap local clustering and prints the total number of significant clusters if heat_map = TRUE
-  # @Return: the a list containing the results of running KSSS and a tibble of the significant clusters
+  # @Return: the a list containing the results of running KSSS and a tibble of all clusters
 
-  # Calculate observed counts - columns represent locations and rows represent time intervals, ordered chronologically from earliest to most recent
+  # Calculate observed counts - columns represent locations, ordered alphabetically a=>z, and rows represent time intervals, ordered chronologically earliest=>most recent
   sorted_statistical_input = statistical_input %>% arrange_(location_column, time_column)
   counts =  sorted_statistical_input %>% 
     df_to_matrix(time_col = time_column, location_col = location_column, value_col = value_column)
@@ -73,7 +78,8 @@ calculate_KSSS = function(centroids, statistical_input, time_column = "schoolyr"
   # Calculate the population-based Poisson scan statistic
   poisson_result = scan_pb_poisson(counts = counts, zones = zones, population = population_matrix, n_mcsim = nsim)
   
-  significant_clusters = top_clusters(x = poisson_result, k = poisson_result$n_zones, zones = zones) %>% 
+  all_clusters = top_clusters(x = poisson_result, k = poisson_result$n_zones, zones = zones)
+  significant_clusters = all_clusters %>% 
     filter(Gumbel_pvalue <= .05)
   
   # Generate a heatmap for each location based on how likely it is to be part of a cluster if specified
@@ -103,11 +109,22 @@ calculate_KSSS = function(centroids, statistical_input, time_column = "schoolyr"
       ) +
         scale_fill_distiller(palette='Spectral') +
         labs(title = heat_map_title, fill = "", caption = paste0(heat_map_caption, "\n", "There were ", num_clusters, " significant local clusters found.")) +
-        theme(plot.title = element_text(size = 10), plot.caption = element_text(hjust =.5))
+        theme(plot.caption = element_text(hjust =.5))
     )
   }
   
-  return(list("Poisson Result"=poisson_result, "Significant Clusters"=significant_clusters))
+  # For every clustered zone, add in the location names associated with that zone
+  locations = centroids$absentee_alias
+  zone_to_locations = list()
+  cluster_zones = all_clusters %>% pull(zone)
+  for (cluster_zone in cluster_zones) {
+    location_indices = get_zone(n = cluster_zone, zones = zones)
+    zone_to_locations = zone_to_locations %>% 
+      append(locations[location_indices] %>% str_c(collapse = ", "))
+  }
+  all_clusters = all_clusters %>% mutate("Schools"=zone_to_locations)
+  
+  return(list("Poisson Result"=poisson_result, "All Clusters"=all_clusters))
 }
 
 ################################################################################
@@ -130,63 +147,85 @@ input_2_KSSS_ill = calculate_KSSS(
 
 # Inputs 3, 4, and 5 are rate data, rather than count data... Thus they require other local clustering techniques, such as Local Moran's I
 
-input_8_KSSS_ill_0 = calculate_KSSS(
-  centroids = all_study_school_shapes,
-  statistical_input = input_8 %>% filter(period == 0),
+input_8_KSSS_ill_0_OUSD = calculate_KSSS(
+  centroids = OUSD_study_school_shapes,
+  statistical_input = input_8 %>% filter(period == 0, dist.n == 1),
   time_column = "period",
   k_nearest_neighbors = 5,
-  heat_map_title = "Local Clustering during Flu Seasons\n of Pre-Program Period"
+  heat_map_title = "Local Clustering during Flu Seasons\n of Pre-Program Period in OUSD"
 )
 
-ggsave(filename=paste0(project_dir, "2e-P3-Figure-1-FluLocalClusters-ill_PRE.png"))
+ggsave(filename=paste0(project_dir, "2e-P3-Figure-1-FluLocalClustersOUSD-ill_PRE.png"))
 
-input_8_KSSS_ill_1 = calculate_KSSS(
-  centroids = all_study_school_shapes,
-  statistical_input = input_8 %>% filter(period == 1),
+input_8_KSSS_ill_1_OUSD = calculate_KSSS(
+  centroids = OUSD_study_school_shapes,
+  statistical_input = input_8 %>% filter(period == 1, dist.n == 1),
   time_column = "period",
   k_nearest_neighbors = 5,
-  heat_map_title = "Local Clustering during Flu Seasons\n of LAIV Period"
+  heat_map_title = "Local Clustering during Flu Seasons\n of LAIV Period in OUSD"
 )
 
-ggsave(filename=paste0(project_dir, "2e-P3-Figure-2-FluLocalClusters-ill_LAIV.png"))
+ggsave(filename=paste0(project_dir, "2e-P3-Figure-2-FluLocalClustersOUSD-ill_LAIV.png"))
 
-input_8_KSSS_ill_2 = calculate_KSSS(
-  centroids = all_study_school_shapes,
-  statistical_input = input_8 %>% filter(period == 2),
+input_8_KSSS_ill_2_OUSD = calculate_KSSS(
+  centroids = OUSD_study_school_shapes,
+  statistical_input = input_8 %>% filter(period == 2, dist.n == 1),
   time_column = "period",
   k_nearest_neighbors = 5,
-  heat_map_title = "Local Clustering during Flu Seasons\n of IIV Period"
+  heat_map_title = "Local Clustering during Flu Seasons\n of IIV Period in OUSD"
 )
 
-ggsave(filename=paste0(project_dir, "2e-P3-Figure-3-FluLocalClusters-ill_IIV.png"))
+ggsave(filename=paste0(project_dir, "2e-P3-Figure-3-FluLocalClustersOUSD-ill_IIV.png"))
 
-input_9_KSSS_ill_0 = calculate_KSSS(
-  centroids = all_study_school_shapes,
-  statistical_input = input_9 %>% filter(period == 0),
+################################################################################
+
+input_9_KSSS_ill_0_OUSD = calculate_KSSS(
+  centroids = OUSD_study_school_shapes,
+  statistical_input = input_9 %>% filter(period == 0, dist.n == 1),
   time_column = "period",
   k_nearest_neighbors = 5,
-  heat_map_title = "Local Clustering during Peak Weeks\n of Pre-Program Period"
+  heat_map_title = "Local Clustering during Peak Weeks\n of Pre-Program Period in OUSD"
 )
 
-ggsave(filename=paste0(project_dir, "2e-P3-Figure-4-PeakwkLocalClusters-ill_PRE.png"))
+ggsave(filename=paste0(project_dir, "2e-P3-Figure-4-PeakwkLocalClustersOUSD-ill_PRE.png"))
 
-input_9_KSSS_ill_1 = calculate_KSSS(
-  centroids = all_study_school_shapes,
-  statistical_input = input_9 %>% filter(period == 1),
+input_9_KSSS_ill_1_OUSD = calculate_KSSS(
+  centroids = OUSD_study_school_shapes,
+  statistical_input = input_9 %>% filter(period == 1, dist.n == 1),
   time_column = "period",
   k_nearest_neighbors = 5,
-  heat_map_title = "Local Clustering during Peak Weeks\n of LAIV Period"
+  heat_map_title = "Local Clustering during Peak Weeks\n of LAIV Period in OUSD"
 )
 
-ggsave(filename=paste0(project_dir, "2e-P3-Figure-5-PeakwkLocalClusters-ill_LAIV.png"))
+ggsave(filename=paste0(project_dir, "2e-P3-Figure-5-PeakwkLocalClustersOUSD-ill_LAIV.png"))
 
-input_9_KSSS_ill_2 = calculate_KSSS(
-  centroids = all_study_school_shapes,
-  statistical_input = input_9 %>% filter(period == 2),
+input_9_KSSS_ill_2_OUSD = calculate_KSSS(
+  centroids = OUSD_study_school_shapes,
+  statistical_input = input_9 %>% filter(period == 2, dist.n == 1),
   time_column = "period",
   k_nearest_neighbors = 5,
-  heat_map_title = "Local Clustering during Peak Weeks\n of IIV Period"
+  heat_map_title = "Local Clustering during Peak Weeks\n of IIV Period in OUSD"
 )
 
-ggsave(filename=paste0(project_dir, "2e-P3-Figure-6-PeakwkLocalClusters-ill_IIV.png"))
+ggsave(filename=paste0(project_dir, "2e-P3-Figure-6-PeakwkLocalClustersOUSD-ill_IIV.png"))
 
+################################################################################
+# Saving Significant clusters of each year for OUSD
+
+write_rds(
+  x = list(
+    "Pre" = input_8_KSSS_ill_0_OUSD[["All Clusters"]] %>% filter(Gumbel_pvalue <= .05),
+    "LAIV" = input_8_KSSS_ill_1_OUSD[["All Clusters"]] %>% filter(Gumbel_pvalue <= .05),
+    "IIV" = input_8_KSSS_ill_2_OUSD[["All Clusters"]] %>% filter(Gumbel_pvalue <= .05)
+  ),
+  path = paste0(project_dir, "2e-P3-Table-1-FluLocalClustersOUSD-ill.RDS")
+)
+
+write_rds(
+  x = list(
+    "Pre" = input_9_KSSS_ill_0_OUSD[["All Clusters"]] %>% filter(Gumbel_pvalue <= .05),
+    "LAIV" = input_9_KSSS_ill_1_OUSD[["All Clusters"]] %>% filter(Gumbel_pvalue <= .05),
+    "IIV" = input_9_KSSS_ill_2_OUSD[["All Clusters"]] %>% filter(Gumbel_pvalue <= .05)
+  ),
+  path = paste0(project_dir, "2e-P3-Table-2-PeakwkLocalClustersOUSD-ill.RDS")
+)
