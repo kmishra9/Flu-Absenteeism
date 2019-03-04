@@ -1,20 +1,20 @@
 Input,Grouping,Moran I Statistic,Expectation,Variance,P-Value
+input_5_moran_ill,2014-15,-0.1779,-0.0256,0.018,0.872
+input_5_moran_ill,2015-16,-0.0289,-0.0263,0.0175,0.508
+input_5_moran_ill,2016-17,-0.0115,-0.027,0.0181,0.454
+input_6_moran_ill,Pre-Program,-0.0158,-0.012,0.0045,0.522
+input_6_moran_ill,Intervention Period,0.1098,-0.012,0.0045,0.034
+input_8_moran_ill,Pre-Program,-0.0158,-0.012,0.0045,0.522
+input_8_moran_ill,Primary STF Vaccine Type: LAIV,0.124,-0.012,0.0045,0.021
+input_8_moran_ill,Primary STF Vaccine Type: IIV,0.0739,-0.012,0.0045,0.101
+input_7_moran_ill,Pre-Program,0.0303,-0.012,0.0047,0.267
+input_7_moran_ill,Intervention Period,0.07,-0.012,0.0047,0.115
+input_9_moran_ill,Pre-Program,0.0303,-0.012,0.0047,0.267
+input_9_moran_ill,Primary STF Vaccine Type: LAIV,0.1107,-0.012,0.0047,0.036
+input_9_moran_ill,Primary STF Vaccine Type: IIV,-0.0011,-0.012,0.0047,0.437
 input_3_moran_ill,2014-15,-0.0605,-0.012,0.0045,0.765
 input_3_moran_ill,2015-16,-0.09,-0.012,0.0046,0.876
 input_3_moran_ill,2016-17,-0.0541,-0.012,0.0046,0.732
 input_4_moran_ill,2014-15,0.0467,-0.012,0.0046,0.193
 input_4_moran_ill,2015-16,-0.0724,-0.012,0.0046,0.812
 input_4_moran_ill,2016-17,0.0019,-0.012,0.0047,0.419
-input_6_moran_ill,Pre-Program,-0.0158,-0.012,0.0045,0.522
-input_6_moran_ill,Intervention Period,0.1098,-0.012,0.0045,0.034
-input_7_moran_ill,Pre-Program,0.0303,-0.012,0.0047,0.267
-input_7_moran_ill,Intervention Period,0.07,-0.012,0.0047,0.115
-input_8_moran_ill,Pre-Program,-0.0158,-0.012,0.0045,0.522
-input_8_moran_ill,Primary STF Vaccine Type: LAIV,0.124,-0.012,0.0045,0.021
-input_8_moran_ill,Primary STF Vaccine Type: IIV,0.0739,-0.012,0.0045,0.101
-input_9_moran_ill,Pre-Program,0.0303,-0.012,0.0047,0.267
-input_9_moran_ill,Primary STF Vaccine Type: LAIV,0.1107,-0.012,0.0047,0.036
-input_9_moran_ill,Primary STF Vaccine Type: IIV,-0.0011,-0.012,0.0047,0.437
-input_5_moran_ill,2014-15,-0.1779,-0.0256,0.018,0.872
-input_5_moran_ill,2015-16,-0.0289,-0.0263,0.0175,0.508
-input_5_moran_ill,2016-17,-0.0115,-0.027,0.0181,0.454

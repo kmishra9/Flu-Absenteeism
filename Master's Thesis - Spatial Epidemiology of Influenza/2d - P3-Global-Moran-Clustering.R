@@ -331,10 +331,15 @@ if (mc) {
 extracted_results_all = extracted_results[str_which(string=extracted_results[["Input"]], pattern="all"),]
 extracted_results_ill = extracted_results[str_which(string=extracted_results[["Input"]], pattern="ill"),]
 
-relevant_results = extracted_results_ill %>% 
-  slice(str_which(string = Input, pattern= "3|4|6|7|8|9")) %>% 
-  rbind( extracted_results_ill %>% 
-           slice(str_which(string = Input, pattern= "5")))
+vaccination_results     = extracted_results_ill %>% slice(str_which(string = Input, pattern= "5"))
+flu_season_rate_results = extracted_results_ill %>% slice(str_which(string = Input, pattern= "6|8"))
+peakwk_rate_results     = extracted_results_ill %>% slice(str_which(string = Input, pattern= "7|9"))
+DID_results             = extracted_results_ill %>% slice(str_which(string = Input, pattern= "3|4"))
+
+relevant_results = vaccination_results %>% 
+  rbind(flu_season_rate_results) %>% 
+  rbind(peakwk_rate_results) %>% 
+  rbind(DID_results)
 
 ################################################################################
 # Export all results of clustering statistics for each statistical input
